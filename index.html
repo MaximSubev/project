@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Училища в Добрич</title>
   <style>
-    /* Animated gradient background for header */
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -12,49 +11,48 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       max-width: 900px;
       margin: 30px auto;
-      background-color: #f9fbfc;
+      background-color: #f4f6f8;
       padding: 0 20px 40px;
       color: #2c3e50;
     }
 
     header {
-      background: linear-gradient(270deg, #e74c3c, #16a085, #2980b9);
+      background: linear-gradient(270deg, red, green, blue);
       background-size: 600% 600%;
       animation: rgbShift 15s ease infinite;
       color: white;
       padding: 40px 20px;
       text-align: center;
-      font-size: 2.8rem;
-      font-weight: 700;
-      border-radius: 14px;
+      font-family: Arial, sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
       text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+      border-radius: 12px;
       user-select: none;
-      margin-bottom: 30px;
     }
 
-    /* Dropdown container */
     .dropdown {
       position: relative;
       display: inline-block;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       user-select: none;
-      width: 100%;
       max-width: 300px;
+      width: 100%;
     }
 
-    /* Dropdown button style */
     .dropbtn {
       background-color: #34495e;
       color: white;
-      padding: 14px 24px;
+      padding: 12px 20px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       transition: background-color 0.3s ease;
       width: 100%;
       text-align: left;
@@ -68,23 +66,20 @@
       background-color: #16a085;
     }
 
-    /* Dropdown content box */
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #fff;
+      background-color: #ffffff;
       min-width: 100%;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 8px;
-      margin-top: 6px;
+      margin-top: 5px;
       z-index: 1000;
-      overflow: hidden;
     }
 
-    /* Dropdown links */
     .dropdown-content a {
       color: #2c3e50;
-      padding: 14px 18px;
+      padding: 12px 18px;
       text-decoration: none;
       display: block;
       border-bottom: 1px solid #eee;
@@ -101,108 +96,53 @@
       color: white;
     }
 
-    /* Search input style */
     #search {
       width: 100%;
-      max-width: 900px;
-      padding: 14px 18px;
-      margin-bottom: 30px;
-      border: 1.8px solid #ccc;
-      border-radius: 8px;
-      font-size: 18px;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
       box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    #search:focus {
-      outline: none;
-      border-color: #16a085;
-      box-shadow: 0 0 8px #16a085;
     }
 
-    /* School card style */
-    .school {
-      background: white;
-      border: 1.5px solid #ddd;
-      padding: 22px 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-      transition: box-shadow 0.3s ease;
-    }
-    .school:hover {
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-    }
-    .school h2 {
-      margin-top: 0;
-      color: #34495e;
-      font-weight: 700;
-      font-size: 1.6rem;
-    }
-    .school p {
-      line-height: 1.4;
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-    .school a {
-      color: #2980b9;
-      text-decoration: none;
-    }
-    .school a:hover {
-      text-decoration: underline;
+    #schools {
+      margin-bottom: 30px;
+      /* Empty placeholder, add school cards here if needed */
     }
 
-    /* Map container */
     #map-container {
-      margin-top: 40px;
+      margin-top: 30px;
       text-align: center;
-    }
-
-    #map-container h3 {
-      color: #34495e;
-      margin-bottom: 20px;
-      font-weight: 700;
-      font-size: 1.8rem;
     }
 
     #map {
       width: 100%;
       max-width: 900px;
-      height: 420px;
-      border-radius: 14px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-      border: 2px solid #ccc;
-      transition: border-color 0.3s ease;
-    }
-    #map:hover {
-      border-color: #16a085;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      height: 450px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 650px) {
+    @media (max-width: 600px) {
       .dropbtn {
-        font-size: 14px;
-        padding: 12px 18px;
+        width: 100%;
       }
-      #search {
-        font-size: 16px;
-        padding: 12px 16px;
-      }
-      .school h2 {
-        font-size: 1.4rem;
+      .dropdown-content {
+        min-width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>Проект от Максим и Димитър</header>
+  <header>
+    Проект от Максим и Димитър
+  </header>
 
   <div class="dropdown" id="dropdown">
-    <button class="dropbtn" id="dropbtn">
-      Избор на училища
-      <span id="arrow">▼</span>
-    </button>
+    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
     <div class="dropdown-content" id="dropdown-content">
       <a href="publicschools.html">Средни училища</a>
       <a href="osnovnischools.html">Основни училища</a>
@@ -211,91 +151,79 @@
     </div>
   </div>
 
-  <input type="text" id="search" placeholder="Търси по име..." aria-label="Търси училище" />
+  <input type="text" id="search" placeholder="Търси по име..." />
 
   <div id="schools">
-    <div class="school" data-name="ОУ 'Хан Аспарух'">
-      <h2>ОУ "Хан Аспарух"</h2>
-      <p>Начално училище в жк. Добротица, ул. „Ж.К. Добротица“ 12</p>
-    </div>
-    <div class="school" data-name="Езикова гимназия 'Гео Милев'">
-      <h2>ЕГ "Гео Милев"</h2>
-      <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
-    </div>
-    <div class="school" data-name="СОУ 'Димитър Талев'">
-      <h2>СОУ "Димитър Талев"</h2>
-      <p>Средно общообразователно, ул. Ген. Георги Попов</p>
-    </div>
-    <div class="school" data-name="ОУ 'Н. Й. Вапцаров'">
-      <h2>ОУ "Н. Й. Вапцаров"</h2>
-      <p>Начално училище, близо до Централна поща</p>
-    </div>
-
-    <h2 style="margin-top:40px; color:#16a085; font-weight:700;">Частни училища</h2>
-
-    <div class="school" data-name="ЧПГТП 'Райко Цончев'">
-      <h2>ЧПГТП "Райко Цончев"</h2>
-      <p>Частна Профилирана Гимназия по Туризъм и Предприемачество "Райко Цончев", прием след 7-ми клас в профили: Туризъм, Предприемачество и бизнес, Информационни технологии и Английски език.</p>
-      <p>През 2021/22 г. има 65 ученика в 11 паралелки.</p>
-    </div>
+    <!-- Add school info here if needed -->
   </div>
 
   <div id="map-container">
     <h3>Карта на училищата в Добрич</h3>
-    <iframe id="map" 
-      src="https://www.google.com/maps/d/embed?mid=1GlYQmzG5bsbhPCK3DL3m7z6U-YgoPNtF" 
-      allowfullscreen 
-      loading="lazy"
-      title="Карта на училищата в Добрич"
-      referrerpolicy="no-referrer-when-downgrade"
-      >
-    </iframe>
+    <div id="map"></div>
   </div>
 
   <script>
-    // Dropdown toggle
-    const dropbtn = document.getElementById('dropbtn');
-    const dropdownContent = document.getElementById('dropdown-content');
-    const arrow = document.getElementById('arrow');
+    // Dropdown logic
+    const dropbtn = document.getElementById("dropbtn");
+    const dropdownContent = document.getElementById("dropdown-content");
 
-    dropbtn.addEventListener('click', () => {
-      const isShown = dropdownContent.style.display === 'block';
-      if (isShown) {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-        arrow.textContent = '▼';
+    dropbtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = dropdownContent.style.display === "block";
+      if (isOpen) {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
       } else {
-        dropdownContent.style.display = 'block';
-        dropbtn.classList.add('active');
-        arrow.textContent = '▲';
+        dropdownContent.style.display = "block";
+        dropbtn.classList.add("active");
+        dropbtn.textContent = "Избор на училища ▲";
       }
     });
 
-    // Close dropdown if clicked outside
-    window.addEventListener('click', e => {
-      if (!dropbtn.contains(e.target) && !dropdownContent.contains(e.target)) {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-        arrow.textContent = '▼';
+    document.addEventListener("click", function (e) {
+      if (!dropdownContent.contains(e.target) && !dropbtn.contains(e.target)) {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
       }
     });
 
-    // Search filter
-    const searchInput = document.getElementById('search');
-    const schools = document.querySelectorAll('.school');
-
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.toLowerCase();
-      schools.forEach(school => {
-        const name = school.getAttribute('data-name').toLowerCase();
-        if (name.includes(query)) {
-          school.style.display = 'block';
-        } else {
-          school.style.display = 'none';
-        }
+    dropdownContent.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
       });
     });
+
+    // Search input logic placeholder (no schools currently)
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("input", function () {
+      // You can add filtering code here when you add school elements
+    });
+
+
+    // Google Maps initialization
+    function initMap() {
+      const dobrich = { lat: 43.57, lng: 27.83 };
+
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: dobrich,
+      });
+
+      // Example marker - you can add more markers if you want
+      const marker = new google.maps.Marker({
+        position: dobrich,
+        map: map,
+        title: "Добрич",
+      });
+    }
   </script>
+
+  <!-- Google Maps API script with your key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtiEoqqYgi6ASCXgwjW70scKnbTfGqtbc&callback=initMap" async defer></script>
 
 </body>
 </html>
