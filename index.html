@@ -2,111 +2,114 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <title>Училища в Добрич</title>
+  <title>School Project - Dobrich Schools</title>
   <style>
-    /* Full page with RGB shifting background */
-    html, body {
+    /* Full screen background image */
+    body, html {
+      margin: 0; padding: 0;
       height: 100%;
-      margin: 0;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e8/Dobrich_Sky_View.jpg'); /* Replace with your favorite skyview */
+      background-size: cover;
+      background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(270deg, red, green, blue);
-      background-size: 600% 600%;
-      animation: rgbShift 15s ease infinite;
       color: white;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
-    }
-
-    @keyframes rgbShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    h1 {
+      text-shadow: 0 0 15px rgba(0,0,0,0.8);
       font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      font-weight: bold;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* Popup modal styles */
+    .modal {
+      display: none; /* hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      position: relative;
+      background: white;
+      border-radius: 10px;
+      max-width: 900px;
+      width: 90vw;
+      height: 600px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      z-index: 10;
     }
 
     iframe {
-      border: 5px solid rgba(255, 255, 255, 0.5);
-      border-radius: 12px;
-      width: 90vw;
-      max-width: 600px;
-      height: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-
-    .school-info {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      max-width: 800px;
-      text-align: left;
-    }
-
-    .school-info h2 {
-      color: #ffcc00;
-    }
-
-    .school-info p {
-      margin: 5px 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <h1>Добре дошли в сайта за училища в Добрич</h1>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13070.591427755543!2d27.799371631215027!3d43.56637186804825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a6ef6f5ef0c1c1%3A0x22a7d12b476399bc!2z0JHQtdC90L7Qu9C-0LPQuNC60LAsINCb0LDRgNC-0YHRgtC-0YDQvtCy0LjRgtGM!5e0!3m2!1sbg!2sbg!4v1686594102451!5m2!1sbg!2sbg"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Карта на Добрич">
-  </iframe>
 
-  <div class="school-info">
-    <h2>Средно училище “П.Р.Славейков”</h2>
-    <p><strong>Адрес:</strong> ул.”Ангел Кънчев” № 2</p>
-    <p><strong>Телефон:</strong> 058/604-433</p>
-    <p><strong>Е-mail:</strong> <a href="mailto:[email protected]">[email protected]</a></p>
-    <p><strong>Директор:</strong> Георги Георгиев</p>
-    <p><strong>Общ брой ученици:</strong> 869</p>
-    <p><strong>Изучавани профили:</strong> Чуждоезиков – Английски език</p>
+  <section class="hero">
+    School Project from Dimitar and Maxim
+  </section>
+
+  <div class="modal" id="mapModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <iframe
+        src="https://www.google.com/maps/d/embed?mid=1gvSNvqvbnjRb7xvpuwe57Q_27QJrxvxI&ehbc=2E312F"
+        allowfullscreen
+        loading="lazy"
+        title="Map of Schools in Dobrich">
+      </iframe>
+    </div>
   </div>
 
-  <div class="school-info">
-    <h2>Средно училище “Св. св. Климент Охридски”</h2>
-    <p><strong>Адрес:</strong> ул.”Русия” № 2</p>
-    <p><strong>Телефон:</strong> 058/603-279</p>
-    <p><strong>Е-mail:</strong> <a href="mailto:[email protected]">[email protected]</a></p>
-    <p><strong>Директор:</strong> Мария Димитрова</p>
-    <p><strong>Общ брой ученици:</strong> 1012</p>
-    <p><strong>Изучавани профили:</strong> Музика, Хореография, Изобразително изкуство</p>
-  </div>
+  <script>
+    // Show the popup when user scrolls down 100px or more
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 100) {
+        document.getElementById('mapModal').style.display = 'flex';
+      }
+    });
 
-  <div class="school-info">
-    <h2>Средно училище “Любен Каравелов”</h2>
-    <p><strong>Адрес:</strong> ж.к.”Балик” 5</p>
-    <p><strong>Телефон:</strong> 058/655-211; 655-212</p>
-    <p><strong>Е-mail:</strong> <a href="mailto:[email protected]">[email protected]</a></p>
-    <p><strong>Директор:</strong> Светла Иванова</p>
-    <p><strong>Общ брой ученици:</strong> 444</p>
-    <p><strong>Изучавани профили:</strong> Технологичен – Информационни технологии, Предприемачество и бизнес</p>
-  </div>
+    // Close popup button handler
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('mapModal').style.display = 'none';
+    });
 
-  <div class="school-info">
-    <h2>Езикова гимназия “Гео Милев”</h2>
-    <p><strong>Адрес:</strong> ул.”Независимост” №21</p>
-    <p><strong>Телефон:</strong> 058/605-587</p>
-    <p><strong>Е-mail:</strong> <a href="mailto:[email protected]">[email protected]</a></p>
-    <p><strong>Директор:</strong> Миглена Василева</p>
-    <p><strong>Общ брой ученици:</strong> 658</p>
-    <p><strong>Изучавани профили:</strong> Чуждоезиков – Немски език, Английски език</p>
-  </div>
+    // Optional: close modal if user clicks outside content area
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('mapModal');
+      if(e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+
 </body>
 </html>
