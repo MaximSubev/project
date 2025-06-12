@@ -2,15 +2,74 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <title>Училища в Добрич</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Добре дошли в Добрич - Училища</title>
+  <style>
+    /* Fullscreen flex center with RGB shifting background */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(270deg, red, green, blue);
+      background-size: 600% 600%;
+      animation: rgbShift 15s ease infinite;
+      flex-direction: column;
+    }
+    @keyframes rgbShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+    #map {
+      width: 90vw;
+      height: 60vh;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Добре дошли на сайта за училища в Добрич</h1>
-  <p>Тук ще намерите информация за основните училища в града, включително езикови и общообразователни.</p>
-  <p>За да видите списъка с училища и да търсите по име, натиснете бутона по-долу:</p>
-  <p style="text-align:center;">
-    <a href="schools.html" class="btn">Виж училищата</a>
-  </p>
+  <h1>Добре дошли в сайта за училища в Добрич</h1>
+  <div id="map"></div>
+
+  <script>
+    function initMap() {
+      const dobrich = { lat: 43.5673, lng: 27.8276 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: dobrich,
+      });
+
+      // Add markers for the schools
+      const schools = [
+        { position: { lat: 43.5785, lng: 27.8323 }, title: "ОУ 'Хан Аспарух'" },
+        { position: { lat: 43.5702, lng: 27.8286 }, title: "Езикова гимназия 'Гео Милев'" },
+        { position: { lat: 43.5595, lng: 27.8272 }, title: "СОУ 'Димитър Талев'" },
+        { position: { lat: 43.5670, lng: 27.8301 }, title: "ОУ 'Н. Й. Вапцаров'" }
+      ];
+
+      schools.forEach(school => {
+        new google.maps.Marker({
+          position: school.position,
+          map: map,
+          title: school.title
+        });
+      });
+    }
+  </script>
+
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtiEoqqYgi6ASCXgwjW70scKnbTfGqtbc&callback=initMap">
+  </script>
 </body>
 </html>
