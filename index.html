@@ -2,14 +2,8 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <title>Проект от Максим и Димитър</title>
+  <title>Училища в Добрич - Карта</title>
   <style>
-    @keyframes rgbShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     body {
       font-family: Arial, sans-serif;
       max-width: 900px;
@@ -18,7 +12,6 @@
       padding: 0 20px 40px;
       color: #2c3e50;
     }
-
     header {
       background: linear-gradient(270deg, red, green, blue);
       background-size: 600% 600%;
@@ -33,177 +26,89 @@
       border-radius: 12px;
       user-select: none;
     }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 30px;
-      user-select: none;
-      max-width: 300px;
-      width: 100%;
+    @keyframes rgbShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-
-    .dropbtn {
-      background-color: #34495e;
-      color: white;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
-      width: 100%;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dropbtn:hover,
-    .dropbtn.active {
-      background-color: #16a085;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #ffffff;
-      min-width: 100%;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 8px;
-      margin-top: 5px;
-      z-index: 1000;
-    }
-
-    .dropdown-content a {
-      color: #2c3e50;
-      padding: 12px 18px;
-      text-decoration: none;
-      display: block;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.2s ease;
-      cursor: pointer;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #16a085;
-      color: white;
-    }
-
-    #search {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    #map-container {
-      margin-top: 30px;
-      text-align: center;
-    }
-
     #map {
       width: 100%;
-      max-width: 900px;
       height: 450px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       border: 1px solid #ccc;
     }
-
-    @media (max-width: 600px) {
-      .dropbtn {
-        width: 100%;
-      }
-      .dropdown-content {
-        min-width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <header>
-    Проект от Максим и Димитър
-  </header>
+<header>
+  Проект от Максим и Димитър
+</header>
 
-  <div class="dropdown" id="dropdown">
-    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
-    <div class="dropdown-content" id="dropdown-content">
-      <a href="publicschools.html">Средни училища</a>
-      <a href="osnovnischools.html">Основни училища</a>
-      <a href="gimnazii.html">Гимназии</a>
-      <a href="chastnischools.html">Частни училища</a>
-    </div>
-  </div>
+<div id="map"></div>
 
-  <input type="text" id="search" placeholder="Търси по име..." />
+<script>
+  let map;
+  let service;
+  let infowindow;
 
-  <div id="map-container">
-    <h3>Карта на училищата в Добрич</h3>
-    <div id="map"></div>
-  </div>
+  function initMap() {
+    const dobich = new google.maps.LatLng(43.5725, 27.8279);
 
-  <script>
-    // Dropdown toggle
-    const dropbtn = document.getElementById("dropbtn");
-    const dropdownContent = document.getElementById("dropdown-content");
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: dobich,
+      zoom: 13,
+    });
 
-    dropbtn.addEventListener("click", e => {
-      e.stopPropagation();
-      const isOpen = dropdownContent.style.display === "block";
-      if (isOpen) {
-        dropdownContent.style.display = "none";
-        dropbtn.classList.remove("active");
-        dropbtn.textContent = "Избор на училища ▼";
-      } else {
-        dropdownContent.style.display = "block";
-        dropbtn.classList.add("active");
-        dropbtn.textContent = "Избор на училища ▲";
+    infowindow = new google.maps.InfoWindow();
+
+    const request = {
+      location: dobich,
+      radius: '5000', // 5km radius
+      keyword: 'училище',
+      type: ['school']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+  }
+
+  function callback(results, status, pagination) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for(let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
       }
-    });
-
-    document.addEventListener("click", () => {
-      dropdownContent.style.display = "none";
-      dropbtn.classList.remove("active");
-      dropbtn.textContent = "Избор на училища ▼";
-    });
-
-    dropdownContent.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        dropdownContent.style.display = "none";
-        dropbtn.classList.remove("active");
-        dropbtn.textContent = "Избор на училища ▼";
-      });
-    });
-
-    // Initialize Google Map
-    function initMap() {
-      const dobrich = { lat: 43.5700, lng: 27.8300 }; // Dobrich coords
-
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
-        center: dobrich,
-      });
-
-      new google.maps.Marker({
-        position: dobrich,
-        map: map,
-        title: "Добрич",
-      });
+      if (pagination && pagination.hasNextPage) {
+        setTimeout(() => {
+          pagination.nextPage();
+        }, 2000);
+      }
+    } else {
+      console.error('PlacesService failed:', status);
     }
-  </script>
+  }
 
-  <!-- Google Maps API with your key -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtiEoqqYgi6ASCXgwjW70scKnbTfGqtbc&callback=initMap" async defer></script>
+  function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
+
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+    });
+
+    google.maps.event.addListener(marker, "click", () => {
+      infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtiEoqqYgi6ASCXgwjW70scKnbTfGqtbc&libraries=places&callback=initMap"
+  async
+  defer
+></script>
 
 </body>
 </html>
