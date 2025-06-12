@@ -192,8 +192,14 @@
 
     dropbtn.addEventListener("click", function (e) {
       e.stopPropagation();
-      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-      dropbtn.classList.toggle("active");
+      const currentDisplay = window.getComputedStyle(dropdownContent).display;
+      if (currentDisplay === "block") {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+      } else {
+        dropdownContent.style.display = "block";
+        dropbtn.classList.add("active");
+      }
     });
 
     document.addEventListener("click", function (e) {
