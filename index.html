@@ -4,7 +4,137 @@
   <meta charset="UTF-8" />
   <title>Училища в Добрич - Интерактивна Карта</title>
   <style>
-    /* ... your CSS unchanged ... */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #2c3e50;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(270deg, #e63946, #2a9d8f, #264653);
+      background-size: 600% 600%;
+      animation: rgbShift 20s ease infinite;
+      color: white;
+      padding: 40px 20px 10px;
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-shadow: 0 0 12px rgba(0,0,0,0.7);
+      user-select: none;
+      border-radius: 0 0 20px 20px;
+    }
+    @keyframes rgbShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header small {
+      display: block;
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #cde;
+      text-shadow: none;
+      opacity: 0.9;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto 40px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    aside {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #333;
+      user-select: text;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    aside h2 {
+      margin-top: 0;
+      font-weight: 700;
+      color: #264653;
+      margin-bottom: 5px;
+      border-bottom: 2px solid #2a9d8f;
+      padding-bottom: 8px;
+    }
+    aside p {
+      margin: 0 0 10px 0;
+    }
+    aside ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 0;
+      max-height: 130px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background-color: #fafafa;
+    }
+    aside ul li {
+      margin-bottom: 6px;
+    }
+    aside button, aside select {
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #2a9d8f;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    aside button:hover, aside select:hover {
+      background-color: #2a9d8f;
+      color: white;
+      border-color: #1f5f63;
+    }
+
+    #map {
+      flex: 1;
+      min-height: 600px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px 10px;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e9f1f7;
+      border-top: 1px solid #ccc;
+      user-select: none;
+    }
+
+    @media (max-width: 850px) {
+      main {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+      }
+      #map {
+        min-height: 450px;
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -136,7 +266,7 @@
 </script>
 
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtiEoqqYgi6ASCXgwjW70scKnbTfGqtbc&libraries=places&callback=initMap"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcVVMrKRa6WCf6UE3VVZPGS5hA1Sz8kJE&libraries=places&callback=initMap"
   async
   defer
 ></script>
