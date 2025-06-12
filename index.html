@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Училища в Добрич</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Училища в Добрич</h1>
+  <input type="text" id="search" placeholder="Търси по име...">
+
+  <div id="schools">
+    <div class="school" data-name="ОУ 'Хан Аспарух'">
+      <h2>ОУ "Хан Аспарух"</h2>
+      <p>Начално училище в жк. Добротица, ул. „Ж.К. Добротица“ 12</p>
+    </div>
+
+    <div class="school" data-name="Езикова гимназия 'Гео Милев'">
+      <h2>ЕГ "Гео Милев"</h2>
+      <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
+    </div>
+
+    <div class="school" data-name="СОУ 'Димитър Талев'">
+      <h2>СОУ "Димитър Талев"</h2>
+      <p>Средно общообразователно, ул. Ген. Георги Попов</p>
+    </div>
+
+    <div class="school" data-name="ОУ 'Н. Й. Вапцаров'">
+      <h2>ОУ "Н. Й. Вапцаров"</h2>
+      <p>Начално училище, близо до Централна поща</p>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("search");
+    searchInput.addEventListener("input", function () {
+      const term = this.value.toLowerCase();
+      document.querySelectorAll(".school").forEach(school => {
+        school.style.display = school.dataset.name.toLowerCase().includes(term) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
