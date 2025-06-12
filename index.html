@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Училища в Добрич - Интерактивна Карта</title>
   <style>
-    /* General */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -42,7 +41,6 @@
       opacity: 0.9;
     }
 
-    /* Main layout */
     main {
       flex: 1;
       display: flex;
@@ -54,7 +52,6 @@
       box-sizing: border-box;
     }
 
-    /* Sidebar */
     aside {
       width: 300px;
       background: white;
@@ -65,36 +62,49 @@
       line-height: 1.5;
       color: #333;
       user-select: text;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
     aside h2 {
       margin-top: 0;
       font-weight: 700;
       color: #264653;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       border-bottom: 2px solid #2a9d8f;
       padding-bottom: 8px;
+    }
+    aside p {
+      margin: 0 0 10px 0;
     }
     aside ul {
       list-style-type: disc;
       margin-left: 20px;
+      padding-left: 0;
+      max-height: 130px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background-color: #fafafa;
     }
-    aside button {
-      margin-top: 15px;
+    aside ul li {
+      margin-bottom: 6px;
+    }
+    aside button, aside select {
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #2a9d8f;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    aside button:hover, aside select:hover {
       background-color: #2a9d8f;
       color: white;
-      border: none;
-      padding: 10px 18px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    aside button:hover {
-      background-color: #1f5f63;
+      border-color: #1f5f63;
     }
 
-    /* Map container */
     #map {
       flex: 1;
       min-height: 600px;
@@ -103,7 +113,6 @@
       border: 1px solid #ccc;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 16px 10px;
@@ -137,11 +146,23 @@
 
 <main>
   <aside>
-    <h2>Какво виждате?</h2>
-    <p>Тази карта показва всички училища в рамките на 5 км от центъра на Добрич.</p>
+    <h2>Училища в Добрич</h2>
+    <p>Изберете училище от списъка, за да посетите сайта му:</p>
+    <select id="schoolSelect">
+      <option value="" disabled selected>-- Изберете училище --</option>
+      <option value="https://dobrichschool1.example.com">Средно училище „Св. Климент Охридски“</option>
+      <option value="https://dobrichschool2.example.com">Основно училище „Н. Й. Вапцаров“</option>
+      <option value="https://dobrichschool3.example.com">Професионална гимназия по икономика</option>
+      <option value="https://dobrichschool4.example.com">Гимназия с преподаване на чужди езици</option>
+      <option value="https://dobrichschool5.example.com">Начално училище „Васил Левски“</option>
+      <!-- Add as many as you want -->
+    </select>
+
+    <h2>Информация</h2>
+    <p>Тази карта показва всички училища в радиус 5 км от центъра на Добрич.</p>
     <ul>
       <li>Кликнете върху маркер, за да видите името на училището.</li>
-      <li>Можете да скриете/покажете училищата с бутона по-долу.</li>
+      <li>Използвайте бутона за скриване/показване на училищата.</li>
     </ul>
     <button id="toggleSchoolsBtn">Скрий училищата</button>
   </aside>
@@ -154,6 +175,13 @@
 </footer>
 
 <script>
+  // Open selected school link in new tab
+  document.getElementById('schoolSelect').addEventListener('change', function () {
+    const url = this.value;
+    if (url) window.open(url, '_blank');
+    this.selectedIndex = 0; // Reset dropdown to placeholder
+  });
+
   let map;
   let service;
   let infowindow;
@@ -228,7 +256,6 @@
     });
   }
 
-  // Toggle school markers visibility
   document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('toggleSchoolsBtn');
     btn.addEventListener('click', () => {
