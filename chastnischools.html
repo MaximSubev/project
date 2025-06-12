@@ -1,181 +1,183 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <title>Училища в Добрич - Начална страница</title>
-  <style>
-    @keyframes rgbShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Училища в Добрич - Начална страница</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 0 20px;
+    color: #222;
+  }
 
+  header {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    background: linear-gradient(270deg, #e74c3c, #27ae60, #2980b9);
+    background-size: 600% 600%;
+    animation: rgbShift 20s ease infinite;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 16px;
+    user-select: none;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+
+  @keyframes rgbShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .dropbtn {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #34495e;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+  }
+
+  .dropbtn:hover,
+  .dropbtn.active {
+    background-color: #16a085;
+  }
+
+  .dropbtn::after {
+    content: "▼";
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    margin-left: 12px;
+  }
+
+  .dropbtn.active::after {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    margin-top: 8px;
+    display: none;
+    z-index: 10;
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: 14px 20px;
+    font-size: 16px;
+    color: #34495e;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #16a085;
+    color: white;
+  }
+
+  @media (max-width: 480px) {
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f9fb;
-      margin: 0;
-      padding: 0 20px 40px 20px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #333;
+      margin: 20px auto;
+      padding: 0 12px;
     }
-
-    header {
-      background: linear-gradient(270deg, #e74c3c, #27ae60, #2980b9);
-      background-size: 600% 600%;
-      animation: rgbShift 20s ease infinite;
-      color: white;
-      padding: 45px 20px;
-      text-align: center;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      border-radius: 14px;
-      text-shadow: 0 0 10px rgba(0,0,0,0.4);
-      margin-bottom: 40px;
-      user-select: none;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      user-select: none;
-      margin-bottom: 40px;
-      width: 220px;
-    }
-
     .dropbtn {
-      background-color: #34495e;
-      color: white;
-      padding: 14px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 100%;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    .dropbtn:hover, .dropbtn.active {
-      background-color: #16a085;
-      box-shadow: 0 8px 20px rgba(22,160,133,0.6);
-    }
-
-    .dropbtn::after {
-      content: "▼";
-      font-size: 0.8rem;
-      margin-left: 12px;
-      transition: transform 0.3s ease;
-    }
-    .dropbtn.active::after {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #fff;
-      min-width: 220px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      margin-top: 8px;
-      z-index: 1000;
-      overflow: hidden;
-    }
-
-    .dropdown-content a {
-      color: #34495e;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: block;
       font-size: 16px;
-      font-weight: 500;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.25s ease, color 0.25s ease;
-      cursor: pointer;
+      padding: 14px 18px;
     }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
+    .dropdown-content a {
+      font-size: 15px;
+      padding: 12px 18px;
     }
-
-    .dropdown-content a:hover {
-      background-color: #16a085;
-      color: white;
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 20px 12px 40px 12px;
-      }
-      .dropdown {
-        width: 100%;
-      }
-      .dropbtn {
-        font-size: 16px;
-        padding: 12px 18px;
-      }
-      .dropdown-content {
-        min-width: 100%;
-      }
-      .dropdown-content a {
-        font-size: 15px;
-        padding: 12px 18px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    Проект от Максим и Димитър
-  </header>
+<header>
+  Проект от Максим и Димитър
+</header>
 
-  <div class="dropdown" id="dropdown">
-    <button class="dropbtn" id="dropbtn">Изберете тип училища</button>
-    <div class="dropdown-content" id="dropdown-content">
-      <a href="publicschools.html">Средни училища</a>
-      <a href="osnovnischools.html">Основни училища</a>
-      <a href="gimnazii.html">Гимназии</a>
-      <a href="chastnischools.html">Частни училища</a>
-    </div>
+<div class="dropdown">
+  <button class="dropbtn" id="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-content">
+    Изберете тип училища
+  </button>
+  <div class="dropdown-content" id="dropdown-content" role="menu" aria-labelledby="dropbtn">
+    <a href="publicschools.html" role="menuitem" tabindex="0">Средни училища</a>
+    <a href="osnovnischools.html" role="menuitem" tabindex="0">Основни училища</a>
+    <a href="gimnazii.html" role="menuitem" tabindex="0">Гимназии</a>
+    <a href="chastnischools.html" role="menuitem" tabindex="0">Частни училища</a>
   </div>
+</div>
 
-  <script>
-    const dropbtn = document.getElementById('dropbtn');
-    const dropdownContent = document.getElementById('dropdown-content');
+<script>
+  const dropbtn = document.getElementById('dropbtn');
+  const dropdownContent = document.getElementById('dropdown-content');
 
-    dropbtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (dropdownContent.style.display === 'block') {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-      } else {
-        dropdownContent.style.display = 'block';
-        dropbtn.classList.add('active');
-      }
-    });
-
-    document.addEventListener('click', () => {
+  // Toggle dropdown visibility
+  dropbtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = dropdownContent.style.display === 'block';
+    if (isOpen) {
       dropdownContent.style.display = 'none';
       dropbtn.classList.remove('active');
-    });
+      dropbtn.setAttribute('aria-expanded', 'false');
+    } else {
+      dropdownContent.style.display = 'block';
+      dropbtn.classList.add('active');
+      dropbtn.setAttribute('aria-expanded', 'true');
+    }
+  });
 
-    dropdownContent.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-      });
+  // Close dropdown on clicking outside
+  document.addEventListener('click', () => {
+    dropdownContent.style.display = 'none';
+    dropbtn.classList.remove('active');
+    dropbtn.setAttribute('aria-expanded', 'false');
+  });
+
+  // Close dropdown when a link is clicked
+  dropdownContent.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropdownContent.style.display = 'none';
+      dropbtn.classList.remove('active');
+      dropbtn.setAttribute('aria-expanded', 'false');
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
