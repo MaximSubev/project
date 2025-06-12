@@ -33,7 +33,6 @@
       padding: 0 20px 40px 20px;
     }
 
-    /* Dropdown styles */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -43,52 +42,46 @@
     }
 
     .dropbtn {
-      background-color: #3498db;
+      background-color: #2c3e50;
       color: white;
       padding: 10px 18px;
       font-size: 16px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease;
     }
 
     .dropbtn:hover, .dropbtn.active {
-      background-color: #2980b9;
+      background-color: #1abc9c;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: white;
-      min-width: 180px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
-      z-index: 1000;
+      background-color: #ffffff;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      border-radius: 8px;
       margin-top: 5px;
+      z-index: 1000;
+      overflow: hidden;
     }
 
     .dropdown-content a {
-      color: #333;
+      color: #2c3e50;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
+      transition: all 0.2s ease;
     }
 
     .dropdown-content a:hover {
-      background-color: #3498db;
+      background-color: #1abc9c;
       color: white;
-      border-radius: 6px;
     }
 
-    /* Search input */
     #search {
       width: 100%;
       padding: 10px;
@@ -99,7 +92,6 @@
       box-sizing: border-box;
     }
 
-    /* Schools list */
     .school {
       background: white;
       border: 1px solid #ddd;
@@ -113,7 +105,6 @@
       color: #2c3e50;
     }
 
-    /* Map container */
     #map-container {
       margin-top: 30px;
       text-align: center;
@@ -135,8 +126,8 @@
     Проект от Максим и Димитър
   </header>
 
-  <!-- Dropdown menu -->
-  <div class="dropdown">
+  <!-- Dropdown -->
+  <div class="dropdown" id="dropdown">
     <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
     <div class="dropdown-content" id="dropdown-content">
       <a href="public.html">Държавни училища</a>
@@ -151,17 +142,14 @@
       <h2>ОУ "Хан Аспарух"</h2>
       <p>Начално училище в жк. Добротица, ул. „Ж.К. Добротица“ 12</p>
     </div>
-
     <div class="school" data-name="Езикова гимназия 'Гео Милев'">
       <h2>ЕГ "Гео Милев"</h2>
       <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
     </div>
-
     <div class="school" data-name="СОУ 'Димитър Талев'">
       <h2>СОУ "Димитър Талев"</h2>
       <p>Средно общообразователно, ул. Ген. Георги Попов</p>
     </div>
-
     <div class="school" data-name="ОУ 'Н. Й. Вапцаров'">
       <h2>ОУ "Н. Й. Вапцаров"</h2>
       <p>Начално училище, близо до Централна поща</p>
@@ -180,7 +168,7 @@
   </div>
 
   <script>
-    // Search filter
+    // Search
     const searchInput = document.getElementById("search");
     searchInput.addEventListener("input", function () {
       const term = this.value.toLowerCase();
@@ -189,27 +177,24 @@
       });
     });
 
-    // Dropdown toggle on click
-    const dropbtn = document.getElementById('dropbtn');
-    const dropdownContent = document.getElementById('dropdown-content');
+    // Dropdown logic
+    const dropbtn = document.getElementById("dropbtn");
+    const dropdownContent = document.getElementById("dropdown-content");
+    const dropdown = document.getElementById("dropdown");
 
-    dropbtn.addEventListener('click', () => {
-      const isVisible = dropdownContent.style.display === 'block';
-      if (isVisible) {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-      } else {
-        dropdownContent.style.display = 'block';
-        dropbtn.classList.add('active');
-      }
+    dropbtn.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent closing immediately
+      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+      this.classList.toggle("active");
     });
 
-    // Close dropdown if clicking outside
-    window.addEventListener('click', e => {
-      if (!e.target.matches('.dropbtn')) {
-        dropdownContent.style.display = 'none';
-        dropbtn.classList.remove('active');
-      }
+    dropdownContent.addEventListener("click", function (e) {
+      e.stopPropagation(); // Keep open if clicking links
+    });
+
+    window.addEventListener("click", function () {
+      dropdownContent.style.display = "none";
+      dropbtn.classList.remove("active");
     });
   </script>
 </body>
