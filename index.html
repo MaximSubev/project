@@ -155,7 +155,6 @@
       <option value="https://dobrichschool3.example.com">Професионална гимназия по икономика</option>
       <option value="https://dobrichschool4.example.com">Гимназия с преподаване на чужди езици</option>
       <option value="https://dobrichschool5.example.com">Начално училище „Васил Левски“</option>
-      <!-- Add as many as you want -->
     </select>
 
     <h2>Информация</h2>
@@ -175,11 +174,11 @@
 </footer>
 
 <script>
-  // Open selected school link in new tab
+  // Dropdown opens link in new tab and resets selection
   document.getElementById('schoolSelect').addEventListener('change', function () {
     const url = this.value;
-    if (url) window.open(url, '_blank');
-    this.selectedIndex = 0; // Reset dropdown to placeholder
+    if (url) window.open(url, '_blank', 'noopener');
+    this.selectedIndex = 0; // reset to placeholder
   });
 
   let map;
@@ -217,22 +216,19 @@
     };
 
     service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-  }
-
-  function callback(results, status, pagination) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for(let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
+    service.nearbySearch(request, (results, status, pagination) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        results.forEach(place => createMarker(place));
+        // If there is a next page, load it after 2 seconds to get all schools
+        if (pagination && pagination.hasNextPage) {
+          setTimeout(() => {
+            pagination.nextPage();
+          }, 2000);
+        }
+      } else {
+        console.error('PlacesService failed:', status);
       }
-      if (pagination && pagination.hasNextPage) {
-        setTimeout(() => {
-          pagination.nextPage();
-        }, 2000);
-      }
-    } else {
-      console.error('PlacesService failed:', status);
-    }
+    });
   }
 
   function createMarker(place) {
@@ -260,7 +256,7 @@
     const btn = document.getElementById('toggleSchoolsBtn');
     btn.addEventListener('click', () => {
       schoolsVisible = !schoolsVisible;
-      markers.forEach(m => m.setVisible(schoolsVisible));
+      markers.forEach(marker => marker.setVisible(schoolsVisible));
       btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
     });
   });
