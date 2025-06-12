@@ -4,246 +4,205 @@
   <meta charset="UTF-8" />
   <title>Училища в Добрич</title>
   <style>
-    /* Reset some basics */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e9f1f7;
-      color: #2c3e50;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 20px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    header {
-      background: linear-gradient(270deg, #f05454, #30475e, #2ab7ca);
-      background-size: 600% 600%;
-      animation: rgbShift 18s ease infinite;
-      color: #fff;
-      padding: 50px 30px;
-      text-align: center;
-      font-weight: 900;
-      font-size: 3rem;
-      letter-spacing: 0.07em;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgb(0 0 0 / 0.15);
-      user-select: none;
-      margin-bottom: 40px;
-    }
+    /* Animated gradient background for header */
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Dropdown styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 30px auto;
+      background-color: #f9fbfc;
+      padding: 0 20px 40px;
+      color: #2c3e50;
+    }
+
+    header {
+      background: linear-gradient(270deg, #e74c3c, #16a085, #2980b9);
+      background-size: 600% 600%;
+      animation: rgbShift 15s ease infinite;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      border-radius: 14px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      user-select: none;
+      margin-bottom: 30px;
+    }
+
+    /* Dropdown container */
     .dropdown {
       position: relative;
       display: inline-block;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       user-select: none;
       width: 100%;
-      max-width: 320px;
+      max-width: 300px;
     }
+
+    /* Dropdown button style */
     .dropbtn {
-      width: 100%;
-      background-color: #30475e;
+      background-color: #34495e;
       color: white;
-      padding: 14px 25px;
-      font-size: 18px;
+      padding: 14px 24px;
+      font-size: 16px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgb(0 0 0 / 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+      width: 100%;
+      text-align: left;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background-color 0.3s ease;
-      font-weight: 600;
-      letter-spacing: 0.03em;
     }
+
     .dropbtn:hover,
     .dropbtn.active {
       background-color: #16a085;
-      box-shadow: 0 6px 18px rgb(22 160 133 / 0.5);
     }
 
+    /* Dropdown content box */
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #fff;
       min-width: 100%;
-      box-shadow: 0 12px 24px rgb(0 0 0 / 0.12);
-      border-radius: 10px;
-      margin-top: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      margin-top: 6px;
       z-index: 1000;
       overflow: hidden;
-      font-size: 16px;
-      user-select: none;
     }
+
+    /* Dropdown links */
     .dropdown-content a {
       color: #2c3e50;
-      padding: 14px 20px;
+      padding: 14px 18px;
       text-decoration: none;
       display: block;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid #eee;
       transition: background-color 0.2s ease;
       cursor: pointer;
-      font-weight: 500;
     }
+
     .dropdown-content a:last-child {
       border-bottom: none;
     }
+
     .dropdown-content a:hover {
       background-color: #16a085;
       color: white;
     }
 
-    /* Search input */
+    /* Search input style */
     #search {
       width: 100%;
+      max-width: 900px;
       padding: 14px 18px;
-      margin-bottom: 35px;
-      border: 2px solid #16a085;
-      border-radius: 12px;
+      margin-bottom: 30px;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
       font-size: 18px;
-      font-weight: 500;
-      color: #2c3e50;
-      outline-offset: 3px;
+      box-sizing: border-box;
       transition: border-color 0.3s ease;
-      box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.07);
-    }
-    #search::placeholder {
-      color: #999;
-      font-style: italic;
     }
     #search:focus {
-      border-color: #2ab7ca;
-      box-shadow: 0 0 10px #2ab7ca;
+      outline: none;
+      border-color: #16a085;
+      box-shadow: 0 0 8px #16a085;
     }
 
-    /* School cards */
+    /* School card style */
     .school {
-      background: #fff;
-      border-radius: 16px;
-      padding: 25px 30px;
-      margin-bottom: 25px;
-      box-shadow: 0 6px 15px rgb(0 0 0 / 0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      user-select: text;
+      background: white;
+      border: 1.5px solid #ddd;
+      padding: 22px 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
     }
     .school:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgb(0 0 0 / 0.15);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
     }
     .school h2 {
       margin-top: 0;
-      margin-bottom: 12px;
-      color: #30475e;
-      font-size: 1.8rem;
+      color: #34495e;
       font-weight: 700;
-      letter-spacing: 0.03em;
-      user-select: text;
+      font-size: 1.6rem;
     }
     .school p {
-      line-height: 1.5;
-      color: #555d66;
-      font-weight: 400;
-      user-select: text;
+      line-height: 1.4;
+      margin: 6px 0;
+      font-size: 1rem;
     }
-    .school p strong {
-      color: #16a085;
-    }
-    .school p a {
-      color: #16a085;
+    .school a {
+      color: #2980b9;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
-    .school p a:hover {
+    .school a:hover {
       text-decoration: underline;
-      color: #2ab7ca;
-    }
-
-    /* Private schools heading */
-    #schools > h2 {
-      color: #16a085;
-      font-weight: 700;
-      font-size: 2rem;
-      margin: 50px 0 20px 0;
-      border-bottom: 3px solid #16a085;
-      padding-bottom: 8px;
-      user-select: none;
     }
 
     /* Map container */
     #map-container {
-      margin-top: 50px;
+      margin-top: 40px;
       text-align: center;
     }
+
     #map-container h3 {
+      color: #34495e;
+      margin-bottom: 20px;
       font-weight: 700;
-      font-size: 2rem;
-      color: #30475e;
-      margin-bottom: 25px;
-      user-select: none;
+      font-size: 1.8rem;
     }
+
     #map {
       width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border-radius: 20px;
-      box-shadow: 0 12px 28px rgb(0 0 0 / 0.1);
-      border: none;
-      transition: box-shadow 0.3s ease;
+      max-width: 900px;
+      height: 420px;
+      border-radius: 14px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+      border: 2px solid #ccc;
+      transition: border-color 0.3s ease;
     }
     #map:hover {
-      box-shadow: 0 18px 40px rgb(0 0 0 / 0.15);
+      border-color: #16a085;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     }
 
     /* Responsive tweaks */
-    @media (max-width: 700px) {
-      header {
-        font-size: 2.2rem;
-        padding: 40px 15px;
-      }
+    @media (max-width: 650px) {
       .dropbtn {
-        font-size: 16px;
-        padding: 12px 20px;
+        font-size: 14px;
+        padding: 12px 18px;
       }
       #search {
         font-size: 16px;
-        padding: 12px 15px;
+        padding: 12px 16px;
       }
       .school h2 {
-        font-size: 1.5rem;
-      }
-    }
-    @media (max-width: 400px) {
-      .dropbtn {
-        font-size: 14px;
-        padding: 10px 18px;
-      }
-      #search {
-        font-size: 14px;
-        padding: 10px 12px;
+        font-size: 1.4rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    Проект от Максим и Димитър
-  </header>
+  <header>Проект от Максим и Димитър</header>
 
   <div class="dropdown" id="dropdown">
-    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
+    <button class="dropbtn" id="dropbtn">
+      Избор на училища
+      <span id="arrow">▼</span>
+    </button>
     <div class="dropdown-content" id="dropdown-content">
       <a href="publicschools.html">Средни училища</a>
       <a href="osnovnischools.html">Основни училища</a>
@@ -252,10 +211,9 @@
     </div>
   </div>
 
-  <input type="text" id="search" placeholder="Търси по име..." />
+  <input type="text" id="search" placeholder="Търси по име..." aria-label="Търси училище" />
 
   <div id="schools">
-    <!-- Existing schools -->
     <div class="school" data-name="ОУ 'Хан Аспарух'">
       <h2>ОУ "Хан Аспарух"</h2>
       <p>Начално училище в жк. Добротица, ул. „Ж.К. Добротица“ 12</p>
@@ -273,81 +231,63 @@
       <p>Начално училище, близо до Централна поща</p>
     </div>
 
-    <!-- Private schools section -->
-    <h2>Частни училища</h2>
+    <h2 style="margin-top:40px; color:#16a085; font-weight:700;">Частни училища</h2>
 
     <div class="school" data-name="ЧПГТП 'Райко Цончев'">
       <h2>ЧПГТП "Райко Цончев"</h2>
       <p>Частна Профилирана Гимназия по Туризъм и Предприемачество "Райко Цончев", прием след 7-ми клас в профили: Туризъм, Предприемачество и бизнес, Информационни технологии и Английски език.</p>
       <p>През 2021/22 г. има 65 ученика в 11 паралелки.</p>
-      <p><strong>Директор:</strong> д-р Маргарита Христова</p>
-      <p><strong>Адрес:</strong> ОФИС № 14, ул.България, №3 Добрич 9300</p>
-      <p><strong>Тел:</strong> 058 655 645</p>
-      <p><strong>Email:</strong> <a href="mailto:pgtp_raykoconchev@abv.bg">pgtp_raykoconchev@abv.bg</a></p>
-      <p><a href="http://www.egtp.eu" target="_blank" rel="noopener noreferrer">www.egtp.eu</a></p>
     </div>
-
-    <div class="school" data-name="ЧСУ 'Леонардо да Винчи'">
-      <h2>ЧСУ "Леонардо да Винчи"</h2>
-      <p>Частна профилирана гимназия, прием след 4-ти клас с усилено изучаване на английски език.</p>
-      <p>Прием след 7-ми клас в профили: Чуждоезиков и Технологичен - стопански мениджмънт с интензивно обучение по английски език.</p>
-      <p>В гимназията се обучават 70 деца в 13 паралелки.</p>
-      <p><strong>Директор:</strong> Нели Николаева</p>
-      <p><strong>Адрес:</strong> ЖК"Русия" 2 Е</p>
-      <p><strong>Тел:</strong> 058 602 418, 058 623 548</p>
-      <p><strong>Email:</strong> <a href="mailto:leonardoschool@abv.bg">leonardoschool@abv.bg</a></p>
-      <p><a href="http://www.leonardo-dobrich.com" target="_blank" rel="noopener noreferrer">www.leonardo-dobrich.com</a></p>
-    </div>
-
   </div>
 
   <div id="map-container">
     <h3>Карта на училищата в Добрич</h3>
-    <iframe
-      id="map"
-      src="https://www.google.com/maps/d/u/0/embed?mid=1_BXQq-6CU_4FrKzZCKG9oy-GpAfxA1Ok"
-      width="800"
-      height="450"
-      allowfullscreen=""
+    <iframe id="map" 
+      src="https://www.google.com/maps/d/embed?mid=1GlYQmzG5bsbhPCK3DL3m7z6U-YgoPNtF" 
+      allowfullscreen 
       loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
       title="Карта на училищата в Добрич"
-    ></iframe>
+      referrerpolicy="no-referrer-when-downgrade"
+      >
+    </iframe>
   </div>
 
   <script>
     // Dropdown toggle
     const dropbtn = document.getElementById('dropbtn');
     const dropdownContent = document.getElementById('dropdown-content');
-    const dropdown = document.getElementById('dropdown');
+    const arrow = document.getElementById('arrow');
 
     dropbtn.addEventListener('click', () => {
       const isShown = dropdownContent.style.display === 'block';
       if (isShown) {
         dropdownContent.style.display = 'none';
         dropbtn.classList.remove('active');
+        arrow.textContent = '▼';
       } else {
         dropdownContent.style.display = 'block';
         dropbtn.classList.add('active');
+        arrow.textContent = '▲';
       }
     });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
+    // Close dropdown if clicked outside
+    window.addEventListener('click', e => {
+      if (!dropbtn.contains(e.target) && !dropdownContent.contains(e.target)) {
         dropdownContent.style.display = 'none';
         dropbtn.classList.remove('active');
+        arrow.textContent = '▼';
       }
     });
 
-    // Search filter for schools
+    // Search filter
     const searchInput = document.getElementById('search');
-    const schools = document.querySelectorAll('#schools .school');
+    const schools = document.querySelectorAll('.school');
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase();
       schools.forEach(school => {
-        const name = school.dataset.name.toLowerCase();
+        const name = school.getAttribute('data-name').toLowerCase();
         if (name.includes(query)) {
           school.style.display = 'block';
         } else {
