@@ -2,41 +2,129 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <title>Училища в Добрич - Карта</title>
+  <title>Училища в Добрич - Интерактивна Карта</title>
   <style>
+    /* General */
     body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 30px auto;
-      background-color: #f4f6f8;
-      padding: 0 20px 40px;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
       color: #2c3e50;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
-      background: linear-gradient(270deg, red, green, blue);
+      background: linear-gradient(270deg, #e63946, #2a9d8f, #264653);
       background-size: 600% 600%;
-      animation: rgbShift 15s ease infinite;
+      animation: rgbShift 20s ease infinite;
       color: white;
-      padding: 40px 20px;
+      padding: 40px 20px 10px;
       text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      margin-bottom: 20px;
-      border-radius: 12px;
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-shadow: 0 0 12px rgba(0,0,0,0.7);
       user-select: none;
+      border-radius: 0 0 20px 20px;
     }
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    #map {
+    header small {
+      display: block;
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #cde;
+      text-shadow: none;
+      opacity: 0.9;
+    }
+
+    /* Main layout */
+    main {
+      flex: 1;
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto 40px;
       width: 100%;
-      height: 450px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      box-sizing: border-box;
+    }
+
+    /* Sidebar */
+    aside {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #333;
+      user-select: text;
+    }
+    aside h2 {
+      margin-top: 0;
+      font-weight: 700;
+      color: #264653;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #2a9d8f;
+      padding-bottom: 8px;
+    }
+    aside ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+    aside button {
+      margin-top: 15px;
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    aside button:hover {
+      background-color: #1f5f63;
+    }
+
+    /* Map container */
+    #map {
+      flex: 1;
+      min-height: 600px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
       border: 1px solid #ccc;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 16px 10px;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e9f1f7;
+      border-top: 1px solid #ccc;
+      user-select: none;
+    }
+
+    @media (max-width: 850px) {
+      main {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+      }
+      #map {
+        min-height: 450px;
+        margin-top: 20px;
+      }
     }
   </style>
 </head>
@@ -44,14 +132,33 @@
 
 <header>
   Проект от Максим и Димитър
+  <small>Интерактивна карта с всички училища в Добрич</small>
 </header>
 
-<div id="map"></div>
+<main>
+  <aside>
+    <h2>Какво виждате?</h2>
+    <p>Тази карта показва всички училища в рамките на 5 км от центъра на Добрич.</p>
+    <ul>
+      <li>Кликнете върху маркер, за да видите името на училището.</li>
+      <li>Можете да скриете/покажете училищата с бутона по-долу.</li>
+    </ul>
+    <button id="toggleSchoolsBtn">Скрий училищата</button>
+  </aside>
+
+  <div id="map"></div>
+</main>
+
+<footer>
+  &copy; 2025 Максим и Димитър - Всички права запазени
+</footer>
 
 <script>
   let map;
   let service;
   let infowindow;
+  let markers = [];
+  let schoolsVisible = true;
 
   function initMap() {
     const dobich = new google.maps.LatLng(43.5725, 27.8279);
@@ -59,13 +166,24 @@
     map = new google.maps.Map(document.getElementById("map"), {
       center: dobich,
       zoom: 13,
+      styles: [
+        {
+          featureType: 'poi.school',
+          stylers: [{color: '#f39c12'}, {visibility: 'on'}]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{visibility: 'off'}]
+        }
+      ]
     });
 
     infowindow = new google.maps.InfoWindow();
 
     const request = {
       location: dobich,
-      radius: '5000', // 5km radius
+      radius: '5000',
       keyword: 'училище',
       type: ['school']
     };
@@ -95,13 +213,30 @@
     const marker = new google.maps.Marker({
       map,
       position: place.geometry.location,
+      title: place.name,
+      icon: {
+        url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+        scaledSize: new google.maps.Size(35, 35)
+      }
     });
 
-    google.maps.event.addListener(marker, "click", () => {
+    markers.push(marker);
+
+    marker.addListener("click", () => {
       infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
       infowindow.open(map, marker);
     });
   }
+
+  // Toggle school markers visibility
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('toggleSchoolsBtn');
+    btn.addEventListener('click', () => {
+      schoolsVisible = !schoolsVisible;
+      markers.forEach(m => m.setVisible(schoolsVisible));
+      btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
+    });
+  });
 </script>
 
 <script
