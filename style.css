@@ -1,16 +1,27 @@
+/* Animated RGB background on whole body */
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
   max-width: 800px;
   margin: auto;
-  background-color: #f7f7f7;
+
+  /* Background animation */
+  background: linear-gradient(270deg, red, green, blue);
+  background-size: 600% 600%;
+  animation: rgbShift 15s ease infinite;
+
+  /* Text color for contrast */
+  color: white;
 }
 
+/* Keep your heading style but make sure text is visible */
 h1 {
   text-align: center;
-  color: #333;
+  color: white; /* change to white to show on dark bg */
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
 }
 
+/* Search box styling */
 #search {
   width: 100%;
   padding: 10px;
@@ -20,15 +31,25 @@ h1 {
   font-size: 16px;
 }
 
+/* School cards styling */
 .school {
-  background: white;
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent white so text is readable */
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
+  color: #2c3e50; /* dark text on white background */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .school h2 {
   margin-top: 0;
   color: #2c3e50;
+}
+
+/* Animation keyframes */
+@keyframes rgbShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
