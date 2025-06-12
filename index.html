@@ -29,7 +29,7 @@
       font-family: Arial, sans-serif;
       max-width: 800px;
       margin: auto;
-      background-color: #f7f7f7;
+      background-color: #f4f6f8;
       padding: 0 20px 40px 20px;
     }
 
@@ -37,48 +37,51 @@
       position: relative;
       display: inline-block;
       margin-bottom: 30px;
-      font-family: Arial, sans-serif;
       user-select: none;
     }
 
     .dropbtn {
-      background-color: #2c3e50;
+      background-color: #34495e;
       color: white;
-      padding: 10px 18px;
+      padding: 12px 20px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       transition: background-color 0.3s ease;
     }
 
     .dropbtn:hover, .dropbtn.active {
-      background-color: #1abc9c;
+      background-color: #16a085;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #ffffff;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 8px;
       margin-top: 5px;
       z-index: 1000;
-      overflow: hidden;
     }
 
     .dropdown-content a {
       color: #2c3e50;
-      padding: 12px 16px;
+      padding: 12px 18px;
       text-decoration: none;
       display: block;
-      transition: all 0.2s ease;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
     }
 
     .dropdown-content a:hover {
-      background-color: #1abc9c;
+      background-color: #16a085;
       color: white;
     }
 
@@ -118,6 +121,15 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       border: 1px solid #ccc;
     }
+
+    @media (max-width: 600px) {
+      .dropbtn {
+        width: 100%;
+      }
+      .dropdown-content {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -126,15 +138,13 @@
     Проект от Максим и Димитър
   </header>
 
-
-<div class="dropdown" id="dropdown">
-  <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
-  <div class="dropdown-content" id="dropdown-content">
-    <a href="publicschools.html">Държавни училища</a>
-    <a href="privateschools.html">Частни училища</a>
+  <div class="dropdown" id="dropdown">
+    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
+    <div class="dropdown-content" id="dropdown-content">
+      <a href="publicschools.html">Държавни училища</a>
+      <a href="privateschools.html">Частни училища</a>
+    </div>
   </div>
-</div>
-
 
   <input type="text" id="search" placeholder="Търси по име..." />
 
@@ -169,7 +179,6 @@
   </div>
 
   <script>
-    // Search
     const searchInput = document.getElementById("search");
     searchInput.addEventListener("input", function () {
       const term = this.value.toLowerCase();
@@ -178,24 +187,20 @@
       });
     });
 
-    // Dropdown logic
     const dropbtn = document.getElementById("dropbtn");
     const dropdownContent = document.getElementById("dropdown-content");
-    const dropdown = document.getElementById("dropdown");
 
     dropbtn.addEventListener("click", function (e) {
-      e.stopPropagation(); // Prevent closing immediately
+      e.stopPropagation();
       dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-      this.classList.toggle("active");
+      dropbtn.classList.toggle("active");
     });
 
-    dropdownContent.addEventListener("click", function (e) {
-      e.stopPropagation(); // Keep open if clicking links
-    });
-
-    window.addEventListener("click", function () {
-      dropdownContent.style.display = "none";
-      dropbtn.classList.remove("active");
+    document.addEventListener("click", function (e) {
+      if (!dropdownContent.contains(e.target) && !dropbtn.contains(e.target)) {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+      }
     });
   </script>
 </body>
