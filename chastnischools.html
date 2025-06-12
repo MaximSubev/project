@@ -3,178 +3,204 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Училища в Добрич - Начална страница</title>
+<title>Училища в Добрич – Избор на тип</title>
 <style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
   body {
+    margin: 0; padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f0f4f8;
-    margin: 40px auto;
-    max-width: 600px;
-    padding: 0 20px;
-    color: #222;
+    background: #f9fafc;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: start;
+    padding: 60px 20px 40px;
   }
 
   header {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #1abc9c, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
-    font-size: 2.8rem;
-    font-weight: 700;
     margin-bottom: 50px;
-    background: linear-gradient(270deg, #e74c3c, #27ae60, #2980b9);
-    background-size: 600% 600%;
-    animation: rgbShift 20s ease infinite;
-    color: white;
-    padding: 40px 20px;
-    border-radius: 16px;
     user-select: none;
-    text-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-
-  @keyframes rgbShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    letter-spacing: 0.04em;
   }
 
   .dropdown {
     position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    width: 320px;
+    max-width: 90vw;
   }
 
   .dropbtn {
     width: 100%;
-    padding: 16px 20px;
-    font-size: 18px;
-    font-weight: 600;
+    background: #34495e;
     color: white;
-    background-color: #34495e;
     border: none;
+    padding: 18px 24px;
+    font-size: 1.25rem;
     border-radius: 12px;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    user-select: none;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    justify-content: space-between;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
     transition: background-color 0.3s ease;
+    user-select: none;
   }
-
   .dropbtn:hover,
-  .dropbtn.active {
-    background-color: #16a085;
+  .dropbtn:focus {
+    background: #1abc9c;
+    outline: none;
   }
 
-  .dropbtn::after {
-    content: "▼";
-    font-size: 0.8rem;
+  .arrow {
+    display: inline-block;
     transition: transform 0.3s ease;
+    font-size: 1.2rem;
     margin-left: 12px;
   }
 
-  .dropbtn.active::after {
+  .dropbtn[aria-expanded="true"] .arrow {
     transform: rotate(180deg);
   }
 
   .dropdown-content {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 0;
     right: 0;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.12);
     overflow: hidden;
-    margin-top: 8px;
-    display: none;
-    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 999;
+  }
+  .dropdown-content.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .dropdown-content a {
     display: block;
-    padding: 14px 20px;
-    font-size: 16px;
+    padding: 16px 24px;
+    font-size: 1.1rem;
     color: #34495e;
     text-decoration: none;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
-
-  .dropdown-content a:last-child {
-    border-bottom: none;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #16a085;
+  .dropdown-content a:hover,
+  .dropdown-content a:focus {
+    background-color: #1abc9c;
     color: white;
+    outline: none;
   }
 
+  /* Responsive */
   @media (max-width: 480px) {
-    body {
-      margin: 20px auto;
-      padding: 0 12px;
+    header {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
     }
     .dropbtn {
-      font-size: 16px;
-      padding: 14px 18px;
+      font-size: 1.1rem;
+      padding: 14px 20px;
     }
     .dropdown-content a {
-      font-size: 15px;
-      padding: 12px 18px;
+      font-size: 1rem;
+      padding: 14px 20px;
     }
   }
 </style>
 </head>
 <body>
 
-<header>
-  Проект от Максим и Димитър
-</header>
+<header>Проект от Максим и Димитър</header>
 
 <div class="dropdown">
-  <button class="dropbtn" id="dropbtn" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-content">
+  <button
+    class="dropbtn"
+    id="dropbtn"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="dropdown-menu"
+  >
     Изберете тип училища
+    <span class="arrow" aria-hidden="true">▾</span>
   </button>
-  <div class="dropdown-content" id="dropdown-content" role="menu" aria-labelledby="dropbtn">
+  <nav
+    class="dropdown-content"
+    id="dropdown-menu"
+    role="menu"
+    aria-labelledby="dropbtn"
+    tabindex="-1"
+  >
     <a href="publicschools.html" role="menuitem" tabindex="0">Средни училища</a>
     <a href="osnovnischools.html" role="menuitem" tabindex="0">Основни училища</a>
     <a href="gimnazii.html" role="menuitem" tabindex="0">Гимназии</a>
     <a href="chastnischools.html" role="menuitem" tabindex="0">Частни училища</a>
-  </div>
+  </nav>
 </div>
 
 <script>
   const dropbtn = document.getElementById('dropbtn');
-  const dropdownContent = document.getElementById('dropdown-content');
+  const dropdownMenu = document.getElementById('dropdown-menu');
 
-  // Toggle dropdown visibility
-  dropbtn.addEventListener('click', e => {
+  // Toggle dropdown menu
+  dropbtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = dropdownContent.style.display === 'block';
-    if (isOpen) {
-      dropdownContent.style.display = 'none';
-      dropbtn.classList.remove('active');
-      dropbtn.setAttribute('aria-expanded', 'false');
+    const expanded = dropbtn.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+      closeDropdown();
     } else {
-      dropdownContent.style.display = 'block';
-      dropbtn.classList.add('active');
-      dropbtn.setAttribute('aria-expanded', 'true');
+      openDropdown();
     }
   });
 
-  // Close dropdown on clicking outside
-  document.addEventListener('click', () => {
-    dropdownContent.style.display = 'none';
-    dropbtn.classList.remove('active');
+  // Open dropdown function
+  function openDropdown() {
+    dropdownMenu.classList.add('open');
+    dropbtn.setAttribute('aria-expanded', 'true');
+    dropdownMenu.focus();
+  }
+
+  // Close dropdown function
+  function closeDropdown() {
+    dropdownMenu.classList.remove('open');
     dropbtn.setAttribute('aria-expanded', 'false');
+  }
+
+  // Close dropdown if click outside
+  document.addEventListener('click', () => {
+    closeDropdown();
   });
 
-  // Close dropdown when a link is clicked
-  dropdownContent.querySelectorAll('a').forEach(link => {
+  // Keyboard accessibility: close dropdown on Escape
+  dropdownMenu.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDropdown();
+      dropbtn.focus();
+    }
+  });
+
+  // Close dropdown on link click
+  dropdownMenu.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      dropdownContent.style.display = 'none';
-      dropbtn.classList.remove('active');
-      dropbtn.setAttribute('aria-expanded', 'false');
+      closeDropdown();
     });
   });
 </script>
