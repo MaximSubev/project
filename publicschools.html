@@ -4,71 +4,93 @@
 <meta charset="UTF-8" />
 <title>Училища в град Добрич - 2021/2022</title>
 <style>
+  /* Background & body */
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
-    background: linear-gradient(135deg, #d6f0ff, #a6d8ff);
-    color: #1a2935;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a2d9ff, #6cb4ee);
+    color: #1b2a41;
+    min-height: 100vh;
   }
   h1, h2 {
-    color: #0a3d62;
-    margin-bottom: 0.3em;
+    color: #0d1a33;
+    margin-bottom: 0.4em;
   }
+  /* Container for each school */
   .school {
-    display: flex;
-    justify-content: space-between;
-    background: #ffffffdd;
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
+    box-shadow: 0 8px 20px rgba(15, 54, 104, 0.15);
+    display: flex;
+    align-items: center;
+    padding: 25px 30px;
     margin-bottom: 30px;
-    overflow: hidden;
     opacity: 0;
     transform: translateX(-40px);
-    animation: slideIn 0.6s forwards;
+    animation: fadeSlideIn 0.8s forwards;
+    animation-delay: var(--delay, 0s);
+    transition: box-shadow 0.3s ease;
   }
-  .school:nth-child(even) {
-    flex-direction: row-reverse;
-    animation-delay: 0.3s;
+  .school:hover {
+    box-shadow: 0 14px 30px rgba(15, 54, 104, 0.25);
   }
-  .school-content {
-    flex: 1;
-    padding: 25px 30px;
+  /* Text container */
+  .school-info {
+    flex: 1 1 60%;
+    padding-right: 20px;
   }
-  .school-content p {
-    line-height: 1.5;
-    margin: 8px 0;
-  }
+  /* Image container */
   .school img {
     flex-shrink: 0;
-    width: 300px;
-    height: auto;
+    max-width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     object-fit: cover;
-    border-left: 1px solid #ddd;
   }
-  .school:nth-child(even) img {
-    border-left: none;
-    border-right: 1px solid #ddd;
+  /* Paragraph styling */
+  p {
+    line-height: 1.5;
+    margin: 4px 0;
   }
+  /* Footer */
   footer {
     text-align: center;
-    margin-top: 50px;
     font-size: 0.9em;
-    color: #07457e;
+    color: #143d7fdd;
+    margin-top: 50px;
   }
-
-  @keyframes slideIn {
+  /* Animation keyframes */
+  @keyframes fadeSlideIn {
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .school {
+      flex-direction: column;
+      padding: 20px;
+    }
+    .school-info {
+      padding-right: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .school img {
+      max-width: 90vw;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
 </style>
 </head>
 <body>
+
 <h1>Общообразователни училища в град Добрич (2021/2022)</h1>
 
-<div class="school">
-  <div class="school-content">
+<div class="school" style="--delay: 0s;">
+  <div class="school-info">
     <h2>СУ “П.Р.Славейков”</h2>
     <p><strong>Адрес:</strong> ул.”Ангел Кънчев” № 2</p>
     <p><strong>Тел.:</strong> 058/ 604-433</p>
@@ -77,11 +99,11 @@
     <p><strong>Общ брой ученици:</strong> 869 в 38 паралелки</p>
     <p><strong>Профили:</strong> “Чуждоезиков” – Английски език</p>
   </div>
-  <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="Снимка на Славейков" />
+  <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="СУ П.Р.Славейков">
 </div>
 
-<div class="school">
-  <div class="school-content">
+<div class="school" style="--delay: 0.2s;">
+  <div class="school-info">
     <h2>СУ “Св. св. Климент Охридски”</h2>
     <p><strong>Адрес:</strong> ул.”Русия” № 2</p>
     <p><strong>Тел.:</strong> 058/603-279</p>
@@ -90,11 +112,11 @@
     <p><strong>Общ брой ученици:</strong> 1012 в 47 паралелки</p>
     <p><strong>Профили:</strong> Музика, Хореография, Изобразително изкуство</p>
   </div>
-  <img src="uploads/Obrazovanie/snimki/original_kl.ohr..jpg" alt="СУ Климент Охридски" />
+  <img src="uploads/Obrazovanie/snimki/original_kl.ohr..jpg" alt="СУ Климент Охридски">
 </div>
 
-<div class="school">
-  <div class="school-content">
+<div class="school" style="--delay: 0.4s;">
+  <div class="school-info">
     <h2>СУ “Любен Каравелов”</h2>
     <p><strong>Адрес:</strong> ж.к.”Балик” 5</p>
     <p><strong>Тел.:</strong> 058/655-211; 655-212</p>
@@ -103,11 +125,11 @@
     <p><strong>Общ брой ученици:</strong> 444 в 20 паралелки</p>
     <p><strong>Профили:</strong> “Технологичен” - ИТ и Предприемачество</p>
   </div>
-  <img src="uploads/Obrazovanie/snimki/original_l.kar..jpg" alt="СУ Любен Каравелов" />
+  <img src="uploads/Obrazovanie/snimki/original_l.kar..jpg" alt="СУ Любен Каравелов">
 </div>
 
-<div class="school">
-  <div class="school-content">
+<div class="school" style="--delay: 0.6s;">
+  <div class="school-info">
     <h2>СУ “Св.св.Кирил и Методий”</h2>
     <p><strong>Адрес:</strong> ул.”Велико Търново” №2</p>
     <p><strong>Тел.:</strong> 058/ 600-602</p>
@@ -116,11 +138,11 @@
     <p><strong>Общ брой ученици:</strong> 729 в 32 паралелки</p>
     <p><strong>Профили:</strong> “Чуждоезиков”</p>
   </div>
-  <img src="uploads/Obrazovanie/snimki/original_hum.gimn..jpg" alt="СУ Св.св.Кирил и Методий" />
+  <img src="uploads/Obrazovanie/snimki/original_hum.gimn..jpg" alt="СУ Св.св.Кирил и Методий">
 </div>
 
-<div class="school">
-  <div class="school-content">
+<div class="school" style="--delay: 0.8s;">
+  <div class="school-info">
     <h2>СУ "Димитър Талев"</h2>
     <p><strong>Адрес:</strong> ул "Генерал Попов"16</p>
     <p><strong>Тел.:</strong> 058/ 690 - 391, 690 - 393</p>
@@ -129,11 +151,12 @@
     <p><strong>Общ брой ученици:</strong> 571 в 25 паралелки</p>
     <p><strong>Профили:</strong> “Технологичен” – Информационни технологии</p>
   </div>
-  <img src="uploads/Obrazovanie/snimki/original_d.talew.jpg" alt="СУ Димитър Талев" />
+  <img src="uploads/Obrazovanie/snimki/original_d.talew.jpg" alt="СУ Димитър Талев">
 </div>
 
 <footer>
   <p>© Община Добрич, 2021/2022</p>
 </footer>
+
 </body>
 </html>
