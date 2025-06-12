@@ -1,199 +1,106 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <title>Гимназии в Добрич</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      background-color: #f4f6f8;
-      padding: 20px;
-    }
-
-    header {
-      background: linear-gradient(270deg, red, green, blue);
-      background-size: 600% 600%;
-      animation: rgbShift 15s ease infinite;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    @keyframes rgbShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 30px;
-      user-select: none;
-    }
-
-    .dropbtn {
-      background-color: #34495e;
-      color: white;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
-    }
-
-    .dropbtn:hover, .dropbtn.active {
-      background-color: #16a085;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #ffffff;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 8px;
-      margin-top: 5px;
-      z-index: 1000;
-    }
-
-    .dropdown-content a {
-      color: #2c3e50;
-      padding: 12px 18px;
-      text-decoration: none;
-      display: block;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.2s ease;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #16a085;
-      color: white;
-    }
-
-    #search {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .gymnasium {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 25px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-
-    .gymnasium img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
-    .gymnasium h2 {
-      margin-top: 0;
-      color: #2c3e50;
-      font-size: 1.8rem;
-    }
-
-    .gymnasium p {
-      line-height: 1.5;
-      color: #444;
-      margin: 6px 0;
-    }
-
-  </style>
+    <meta charset="UTF-8" />
+    <title>Гимназии в град Добрич - 2021/2022</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #d0e6ff, #a1c4fd); 
+            color: #1b2a49;
+        }
+        h1, h2 { color: #0f1c3f; }
+        .school {
+            background: #fff; 
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px; 
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: transform 0.3s ease;
+        }
+        .school:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .school img {
+            max-width: 250px; 
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+        .school-info {
+            max-width: 600px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: #334e7c;
+        }
+        /* Return to homepage button */
+        .return-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #0f1c3f;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        .return-home:hover {
+            background-color: #142d6b;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <a href="index.html" class="return-home">
+        ← Начало
+    </a>
 
-<header>Гимназии в Добрич</header>
+    <h1>Гимназии в град Добрич (2021/2022)</h1>
 
-<div class="dropdown" id="dropdown">
-  <button class="dropbtn" id="dropbtn">Избор на гимназии ▼</button>
-  <div class="dropdown-content" id="dropdown-content">
-    <a href="#geo-milev">Езикова гимназия "Гео Милев"</a>
-    <a href="#ivan-vazov">Природоматематическа гимназия "Иван Вазов"</a>
-  </div>
-</div>
+    <div class="school">
+        <img src="uploads/Obrazovanie/snimki/original_ez.gimn..jpg" alt="Езикова гимназия Гео Милев">
+        <div class="school-info">
+            <h2>Езикова гимназия “Гео Милев”</h2>
+            <p><strong>Адрес:</strong> гр. Добрич, ул. „Независимост“ №21</p>
+            <p><strong>Телефон:</strong> 058/ 605-587</p>
+            <p><strong>Email:</strong> egdobrich@abv.bg</p>
+            <p><strong>Директор:</strong> Миглена Василева</p>
+            <p><strong>Общ брой ученици:</strong> 658 в 26 паралелки</p>
+            <p><strong>Изучавани профили:</strong> “Чуждоезиков” – Немски език, Английски език – с прием след завършен седми клас</p>
+        </div>
+    </div>
 
-<input type="text" id="search" placeholder="Търси по име..." />
+    <div class="school">
+        <img src="uploads/Obrazovanie/snimki/original_pmg.jpg" alt="Природоматематическа гимназия Иван Вазов">
+        <div class="school-info">
+            <h2>Природоматематическа гимназия “Иван Вазов”</h2>
+            <p><strong>Адрес:</strong> гр. Добрич, бул. „Трети март“ №1</p>
+            <p><strong>Телефон:</strong> 058/ 602-507</p>
+            <p><strong>Email:</strong> pmg@dobrich.net</p>
+            <p><strong>Директор:</strong> Галин Канев</p>
+            <p><strong>Общ брой ученици:</strong> 440 в 18 паралелки</p>
+            <p><strong>Изучавани профили:</strong> “Природоматематически” – Информатика, Биология, профил "Технологичен" - Информационни технологии – с прием след завършен седми клас.</p>
+        </div>
+    </div>
 
-<div id="gyms">
-
-  <div class="gymnasium" data-name="Езикова гимназия Гео Милев" id="geo-milev">
-    <h2>Езикова гимназия “Гео Милев”</h2>
-    <img src="uploads/Obrazovanie/snimki/original_ez.gimn..jpg" alt="Езикова гимназия Гео Милев">
-    <p><strong>Адрес:</strong> гр. Добрич, ул. „Независимост“ №21</p>
-    <p><strong>Телефон:</strong> 058/ 605-587</p>
-    <p><strong>e-mail:</strong> egdobrich@abv.bg</p>
-    <p><strong>Директор:</strong> Миглена Василева</p>
-    <p><strong>Общ брой ученици:</strong> 658 в 26 паралелки</p>
-    <p><strong>Изучавани профили:</strong> “Чуждоезиков” – Немски език, Английски език – с прием след завършен седми клас</p>
-  </div>
-
-  <div class="gymnasium" data-name="Природоматематическа гимназия Иван Вазов" id="ivan-vazov">
-    <h2>Природоматематическа гимназия “Иван Вазов”</h2>
-    <img src="uploads/Obrazovanie/snimki/original_pmg.jpg" alt="Природоматематическа гимназия Иван Вазов">
-    <p><strong>Адрес:</strong> гр. Добрич, бул. „Трети март“ №1</p>
-    <p><strong>Телефон:</strong> 058/ 602-507</p>
-    <p><strong>e-mail:</strong> pmg@dobrich.net</p>
-    <p><strong>Директор:</strong> Галин Канев</p>
-    <p><strong>Общ брой ученици:</strong> 440 в 18 паралелки</p>
-    <p><strong>Изучавани профили:</strong> “Природоматематически” – Информатика, Биология, профил "Технологичен" - Информационни технологии – с прием след завършен седми клас.</p>
-  </div>
-
-</div>
-
-<script>
-  const searchInput = document.getElementById("search");
-  searchInput.addEventListener("input", function () {
-    const term = this.value.toLowerCase();
-    document.querySelectorAll(".gymnasium").forEach(gym => {
-      gym.style.display = gym.dataset.name.toLowerCase().includes(term) ? "" : "none";
-    });
-  });
-
-  const dropbtn = document.getElementById("dropbtn");
-  const dropdownContent = document.getElementById("dropdown-content");
-
-  dropbtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    const currentDisplay = window.getComputedStyle(dropdownContent).display;
-    if (currentDisplay === "block") {
-      dropdownContent.style.display = "none";
-      dropbtn.classList.remove("active");
-    } else {
-      dropdownContent.style.display = "block";
-      dropbtn.classList.add("active");
-    }
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!dropdownContent.contains(e.target) && !dropbtn.contains(e.target)) {
-      dropdownContent.style.display = "none";
-      dropbtn.classList.remove("active");
-    }
-  });
-</script>
-
+    <footer>
+        <p>© Община Добрич, 2021/2022</p>
+    </footer>
 </body>
 </html>
