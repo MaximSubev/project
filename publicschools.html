@@ -7,65 +7,61 @@
         body { 
             font-family: Arial, sans-serif; 
             margin: 20px; 
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #1b2735;
+            background: linear-gradient(135deg, #d0e6ff, #a1c4fd); 
+            color: #1b2a49;
         }
-        h1, h2 { 
-            color: #0d1a33; 
-            font-weight: 700;
-        }
-        .school { 
+        h1, h2 { color: #0f1c3f; }
+        .school {
             background: #fff; 
-            border: 1px solid #ccc; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border-radius: 12px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            box-shadow: 0 8px 20px rgba(13, 26, 51, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px; 
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
             transition: transform 0.3s ease;
         }
         .school:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(13, 26, 51, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .school img {
+            max-width: 250px; 
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            flex-shrink: 0;
         }
         .school-info {
-            max-width: 60%;
-        }
-        .school img { 
-            max-width: 300px; 
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
         }
         footer {
             text-align: center;
             margin-top: 40px;
-            color: #0d1a33cc;
-            font-weight: 600;
+            font-style: italic;
+            color: #334e7c;
         }
         /* Return to homepage button */
         .return-home {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #0d1a33;
+            background-color: #0f1c3f;
             color: #fff;
             text-decoration: none;
             font-weight: 600;
             padding: 10px 16px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(13, 26, 51, 0.3);
             font-size: 1rem;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             z-index: 1000;
+            transition: background-color 0.3s ease;
         }
         .return-home:hover {
-            background-color: #143d7f;
-            box-shadow: 0 6px 15px rgba(20, 61, 127, 0.6);
+            background-color: #142d6b;
             cursor: pointer;
         }
     </style>
@@ -76,8 +72,9 @@
     </a>
 
     <h1>Общообразователни училища в град Добрич (2021/2022)</h1>
-    
+
     <div class="school">
+        <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="СУ П.Р.Славейков">
         <div class="school-info">
             <h2>СУ “П.Р.Славейков”</h2>
             <p><strong>Адрес:</strong> ул.”Ангел Кънчев” № 2</p>
@@ -87,10 +84,10 @@
             <p><strong>Общ брой ученици:</strong> 869 в 38 паралелки</p>
             <p><strong>Профили:</strong> “Чуждоезиков” – Английски език</p>
         </div>
-        <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="Снимка на Славейков">
     </div>
 
     <div class="school">
+        <img src="uploads/Obrazovanie/snimki/ohridski.jpg" alt="СУ Св. св. Климент Охридски">
         <div class="school-info">
             <h2>СУ “Св. св. Климент Охридски”</h2>
             <p><strong>Адрес:</strong> ул.”Русия” № 2</p>
@@ -100,10 +97,10 @@
             <p><strong>Общ брой ученици:</strong> 1012 в 47 паралелки</p>
             <p><strong>Профили:</strong> Музика, Хореография, Изобразително изкуство</p>
         </div>
-        <img src="uploads/Obrazovanie/snimki/ohridski.jpg" alt="Снимка на Климент Охридски">
     </div>
 
     <div class="school">
+        <img src="uploads/Obrazovanie/snimki/sou-luben-karavelov.jpg" alt="СУ Любен Каравелов">
         <div class="school-info">
             <h2>СУ “Любен Каравелов”</h2>
             <p><strong>Адрес:</strong> ж.к.”Балик” 5</p>
@@ -113,10 +110,10 @@
             <p><strong>Общ брой ученици:</strong> 444 в 20 паралелки</p>
             <p><strong>Профили:</strong> “Технологичен” - ИТ и Предприемачество</p>
         </div>
-        <img src="uploads/Obrazovanie/snimki/sou-luben-karavelov.jpg" alt="Снимка на Любен Каравелов">
     </div>
 
     <div class="school">
+        <img src="uploads/Obrazovanie/snimki/humanitarna.jpg" alt="СУ Св.св.Кирил и Методий">
         <div class="school-info">
             <h2>СУ “Св.св.Кирил и Методий”</h2>
             <p><strong>Адрес:</strong> ул.”Велико Търново” №2</p>
@@ -126,10 +123,10 @@
             <p><strong>Общ брой ученици:</strong> 729 в 32 паралелки</p>
             <p><strong>Профили:</strong> “Чуждоезиков”</p>
         </div>
-        <img src="uploads/Obrazovanie/snimki/humanitarna.jpg" alt="Снимка на Св.св.Кирил и Методий">
     </div>
 
     <div class="school">
+        <img src="uploads/Obrazovanie/snimki/talev.jpg" alt="СУ Димитър Талев">
         <div class="school-info">
             <h2>СУ "Димитър Талев"</h2>
             <p><strong>Адрес:</strong> ул "Генерал Попов"16</p>
@@ -139,7 +136,6 @@
             <p><strong>Общ брой ученици:</strong> 571 в 25 паралелки</p>
             <p><strong>Профили:</strong> “Технологичен” – Информационни технологии</p>
         </div>
-        <img src="uploads/Obrazovanie/snimki/talev.jpg" alt="Снимка на Димитър Талев">
     </div>
 
     <footer>
