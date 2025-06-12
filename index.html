@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Училища в Добрич</title>
   <style>
-    /* Animated RGB gradient background for the header */
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -40,6 +39,7 @@
       display: inline-block;
       margin-bottom: 30px;
       font-family: Arial, sans-serif;
+      user-select: none;
     }
 
     .dropbtn {
@@ -51,6 +51,11 @@
       border-radius: 6px;
       cursor: pointer;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .dropbtn:hover, .dropbtn.active {
+      background-color: #2980b9;
     }
 
     .dropdown-content {
@@ -60,7 +65,7 @@
       min-width: 180px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
-      z-index: 1;
+      z-index: 1000;
       margin-top: 5px;
     }
 
@@ -70,6 +75,7 @@
       text-decoration: none;
       display: block;
       border-bottom: 1px solid #eee;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .dropdown-content a:last-child {
@@ -82,14 +88,7 @@
       border-radius: 6px;
     }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: #2980b9;
-    }
-
+    /* Search input */
     #search {
       width: 100%;
       padding: 10px;
@@ -97,8 +96,10 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 16px;
+      box-sizing: border-box;
     }
 
+    /* Schools list */
     .school {
       background: white;
       border: 1px solid #ddd;
@@ -112,6 +113,7 @@
       color: #2c3e50;
     }
 
+    /* Map container */
     #map-container {
       margin-top: 30px;
       text-align: center;
@@ -133,10 +135,10 @@
     Проект от Максим и Димитър
   </header>
 
-  <!-- Dropdown menu added here -->
+  <!-- Dropdown menu -->
   <div class="dropdown">
-    <button class="dropbtn">Избор на училища ▼</button>
-    <div class="dropdown-content">
+    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
+    <div class="dropdown-content" id="dropdown-content">
       <a href="public.html">Държавни училища</a>
       <a href="private.html">Частни училища</a>
     </div>
@@ -178,12 +180,36 @@
   </div>
 
   <script>
+    // Search filter
     const searchInput = document.getElementById("search");
     searchInput.addEventListener("input", function () {
       const term = this.value.toLowerCase();
       document.querySelectorAll(".school").forEach(school => {
         school.style.display = school.dataset.name.toLowerCase().includes(term) ? "" : "none";
       });
+    });
+
+    // Dropdown toggle on click
+    const dropbtn = document.getElementById('dropbtn');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    dropbtn.addEventListener('click', () => {
+      const isVisible = dropdownContent.style.display === 'block';
+      if (isVisible) {
+        dropdownContent.style.display = 'none';
+        dropbtn.classList.remove('active');
+      } else {
+        dropdownContent.style.display = 'block';
+        dropbtn.classList.add('active');
+      }
+    });
+
+    // Close dropdown if clicking outside
+    window.addEventListener('click', e => {
+      if (!e.target.matches('.dropbtn')) {
+        dropdownContent.style.display = 'none';
+        dropbtn.classList.remove('active');
+      }
     });
   </script>
 </body>
