@@ -1,275 +1,90 @@
-<!DOCTYPE html>
-<html lang="bg">
-<head>
-  <meta charset="UTF-8" />
-  <title>Училища в Добрич - Интерактивна Карта</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f4f8;
-      color: #2c3e50;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background: linear-gradient(270deg, #e63946, #2a9d8f, #264653);
-      background-size: 600% 600%;
-      animation: rgbShift 20s ease infinite;
-      color: white;
-      padding: 40px 20px 10px;
-      text-align: center;
-      font-size: 2.8rem;
-      font-weight: 900;
-      text-shadow: 0 0 12px rgba(0,0,0,0.7);
-      user-select: none;
-      border-radius: 0 0 20px 20px;
-    }
-    @keyframes rgbShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    header small {
-      display: block;
-      margin-top: 8px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #cde;
-      text-shadow: none;
-      opacity: 0.9;
-    }
+// Redirect to chosen page from dropdown
+document.getElementById('schoolSelect').addEventListener('change', function () {
+  const page = this.value;
+  if (page) {
+    window.location.href = page;
+  }
+});
 
-    main {
-      flex: 1;
-      display: flex;
-      padding: 20px;
-      gap: 20px;
-      max-width: 1200px;
-      margin: 20px auto 40px;
-      width: 100%;
-      box-sizing: border-box;
-    }
+let map;
+let service;
+let infowindow;
+let markers = [];
+let schoolsVisible = true;
 
-    aside {
-      width: 300px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      padding: 20px;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #333;
-      user-select: text;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    aside h2 {
-      margin-top: 0;
-      font-weight: 700;
-      color: #264653;
-      margin-bottom: 5px;
-      border-bottom: 2px solid #2a9d8f;
-      padding-bottom: 8px;
-    }
-    aside p {
-      margin: 0 0 10px 0;
-    }
-    aside ul {
-      list-style-type: disc;
-      margin-left: 20px;
-      padding-left: 0;
-      max-height: 130px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 8px 12px;
-      background-color: #fafafa;
-    }
-    aside ul li {
-      margin-bottom: 6px;
-    }
-    aside button, aside select {
-      font-size: 1rem;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #2a9d8f;
-      cursor: pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-    aside button:hover, aside select:hover {
-      background-color: #2a9d8f;
-      color: white;
-      border-color: #1f5f63;
-    }
+function initMap() {
+  const dobich = new google.maps.LatLng(43.5725, 27.8279);
 
-    #map {
-      flex: 1;
-      min-height: 600px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-      border: 1px solid #ccc;
-    }
-
-    footer {
-      text-align: center;
-      padding: 16px 10px;
-      font-size: 0.9rem;
-      color: #777;
-      background-color: #e9f1f7;
-      border-top: 1px solid #ccc;
-      user-select: none;
-    }
-
-    @media (max-width: 850px) {
-      main {
-        flex-direction: column;
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: dobich,
+    zoom: 13,
+    styles: [
+      {
+        featureType: 'poi.school',
+        stylers: [{ color: '#f39c12' }, { visibility: 'on' }]
+      },
+      {
+        featureType: 'poi',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }]
       }
-      aside {
-        width: 100%;
-      }
-      #map {
-        min-height: 450px;
-        margin-top: 20px;
-      }
+    ]
+  });
+
+  infowindow = new google.maps.InfoWindow();
+
+  const request = {
+    location: dobich,
+    radius: '5000',
+    keyword: 'училище',
+    type: ['school']
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.nearbySearch(request, callback);
+}
+
+function callback(results, status, pagination) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (let i = 0; i < results.length; i++) {
+      createMarker(results[i]);
     }
-  </style>
-</head>
-<body>
+    if (pagination && pagination.hasNextPage) {
+      setTimeout(() => {
+        pagination.nextPage();
+      }, 2000);
+    }
+  } else {
+    console.error('PlacesService failed:', status);
+  }
+}
 
-<header>
-  Проект от Максим и Димитър
-  <small>Интерактивна карта с всички училища в Добрич</small>
-</header>
+function createMarker(place) {
+  if (!place.geometry || !place.geometry.location) return;
 
-<main>
-  <aside>
-    <h2>Навигация към страници</h2>
-    <p>Изберете категория училища за пренасочване:</p>
-    <select id="schoolSelect">
-      <option value="" disabled selected>-- Изберете категория --</option>
-      <option value="private.html">Частни училища</option>
-      <option value="gimnazii.html">Гимназии</option>
-      <option value="osnovnischools.html">Основни училища</option>
-      <option value="publicschools.html">Обществени училища</option>
-    </select>
-
-    <h2>Информация</h2>
-    <p>Тази карта показва всички училища в радиус 5 км от центъра на Добрич.</p>
-    <ul>
-      <li>Кликнете върху маркер, за да видите името на училището.</li>
-      <li>Използвайте бутона за скриване/показване на училищата.</li>
-    </ul>
-    <button id="toggleSchoolsBtn">Скрий училищата</button>
-  </aside>
-
-  <div id="map"></div>
-</main>
-
-<footer>
-  &copy; 2025 Максим и Димитър - Всички права запазени
-</footer>
-
-<script>
-  // Redirect to chosen page from dropdown
-  document.getElementById('schoolSelect').addEventListener('change', function () {
-    const page = this.value;
-    if (page) {
-      window.location.href = page;
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+    title: place.name,
+    icon: {
+      url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+      scaledSize: new google.maps.Size(35, 35)
     }
   });
 
-  let map;
-  let service;
-  let infowindow;
-  let markers = [];
-  let schoolsVisible = true;
+  markers.push(marker);
 
-  function initMap() {
-    const dobich = new google.maps.LatLng(43.5725, 27.8279);
-
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: dobich,
-      zoom: 13,
-      styles: [
-        {
-          featureType: 'poi.school',
-          stylers: [{color: '#f39c12'}, {visibility: 'on'}]
-        },
-        {
-          featureType: 'poi',
-          elementType: 'labels',
-          stylers: [{visibility: 'off'}]
-        }
-      ]
-    });
-
-    infowindow = new google.maps.InfoWindow();
-
-    const request = {
-      location: dobich,
-      radius: '5000',
-      keyword: 'училище',
-      type: ['school']
-    };
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-  }
-
-  function callback(results, status, pagination) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for(let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-      if (pagination && pagination.hasNextPage) {
-        setTimeout(() => {
-          pagination.nextPage();
-        }, 2000);
-      }
-    } else {
-      console.error('PlacesService failed:', status);
-    }
-  }
-
-  function createMarker(place) {
-    if (!place.geometry || !place.geometry.location) return;
-
-    const marker = new google.maps.Marker({
-      map,
-      position: place.geometry.location,
-      title: place.name,
-      icon: {
-        url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
-        scaledSize: new google.maps.Size(35, 35)
-      }
-    });
-
-    markers.push(marker);
-
-    marker.addListener("click", () => {
-      infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
-      infowindow.open(map, marker);
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('toggleSchoolsBtn');
-    btn.addEventListener('click', () => {
-      schoolsVisible = !schoolsVisible;
-      markers.forEach(m => m.setVisible(schoolsVisible));
-      btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
-    });
+  marker.addListener("click", () => {
+    infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
+    infowindow.open(map, marker);
   });
-</script>
+}
 
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcVVMrKRa6WCf6UE3VVZPGS5hA1Sz8kJE&libraries=places&callback=initMap"
-  async
-  defer
-></script>
+const btn = document.getElementById('toggleSchoolsBtn');
+btn.addEventListener('click', () => {
+  if (markers.length === 0) return; // no markers to toggle
 
-</body>
-</html>
+  schoolsVisible = !schoolsVisible;
+  markers.forEach(m => m.setVisible(schoolsVisible));
+  btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
+});
