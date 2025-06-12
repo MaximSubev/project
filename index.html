@@ -146,10 +146,10 @@
 
 <main>
   <aside>
-    <h2>Училища в Добрич</h2>
-    <p>Изберете категория училища от списъка, за да посетите страницата:</p>
+    <h2>Навигация към страници</h2>
+    <p>Изберете категория училища за пренасочване:</p>
     <select id="schoolSelect">
-      <option value="" disabled selected>-- Изберете училище --</option>
+      <option value="" disabled selected>-- Изберете категория --</option>
       <option value="chastnischools.html">Частни училища</option>
       <option value="gimnazii.html">Гимназии</option>
       <option value="osnovnischools.html">Основни училища</option>
@@ -173,10 +173,11 @@
 </footer>
 
 <script>
-  // Redirect to selected local page on dropdown change
+  // Redirect to chosen page from dropdown
   document.getElementById('schoolSelect').addEventListener('change', function () {
     const page = this.value;
     if (page) {
+      console.log('Redirecting to:', page);
       window.location.href = page;
     }
   });
