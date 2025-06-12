@@ -1,176 +1,149 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8" />
-<title>Училища в град Добрич - 2021/2022</title>
-<style>
-  body {
-    margin: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #a2d9ff, #6cb4ee);
-    color: #1b2a41;
-    min-height: 100vh;
-  }
-  h1, h2 {
-    color: #0d1a33;
-    margin-bottom: 0.4em;
-  }
-  .school {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(15, 54, 104, 0.15);
-    display: flex;
-    align-items: center;
-    padding: 25px 30px;
-    margin-bottom: 30px;
-    opacity: 0;
-    transform: translateX(-40px);
-    animation: fadeSlideIn 0.8s forwards;
-    animation-delay: var(--delay, 0s);
-    transition: box-shadow 0.3s ease;
-  }
-  .school:hover {
-    box-shadow: 0 14px 30px rgba(15, 54, 104, 0.25);
-  }
-  .school-info {
-    flex: 1 1 60%;
-    padding-right: 20px;
-  }
-  /* Container for images: will hold 2 images side by side */
-  .school-images {
-    display: flex;
-    gap: 15px;
-    flex-shrink: 0;
-  }
-  .school-images img {
-    max-width: 150px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    object-fit: cover;
-  }
-  p {
-    line-height: 1.5;
-    margin: 4px 0;
-  }
-  footer {
-    text-align: center;
-    font-size: 0.9em;
-    color: #143d7fdd;
-    margin-top: 50px;
-  }
-  @keyframes fadeSlideIn {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  @media (max-width: 768px) {
-    .school {
-      flex-direction: column;
-      padding: 20px;
-    }
-    .school-info {
-      padding-right: 0;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .school-images {
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .school-images img {
-      max-width: 45vw;
-      margin-bottom: 10px;
-    }
-  }
-</style>
+    <meta charset="UTF-8">
+    <title>Училища в град Добрич - 2021/2022</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #1b2735;
+        }
+        h1, h2 { 
+            color: #0d1a33; 
+            font-weight: 700;
+        }
+        .school { 
+            background: #fff; 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(13, 26, 51, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .school:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(13, 26, 51, 0.2);
+        }
+        .school-info {
+            max-width: 60%;
+        }
+        .school img { 
+            max-width: 300px; 
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #0d1a33cc;
+            font-weight: 600;
+        }
+        /* Return to homepage button */
+        .return-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #0d1a33;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(13, 26, 51, 0.3);
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+        }
+        .return-home:hover {
+            background-color: #143d7f;
+            box-shadow: 0 6px 15px rgba(20, 61, 127, 0.6);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <a href="index.html" class="return-home">
+        ← Начало
+    </a>
 
-<h1>Общообразователни училища в град Добрич (2021/2022)</h1>
+    <h1>Общообразователни училища в град Добрич (2021/2022)</h1>
+    
+    <div class="school">
+        <div class="school-info">
+            <h2>СУ “П.Р.Славейков”</h2>
+            <p><strong>Адрес:</strong> ул.”Ангел Кънчев” № 2</p>
+            <p><strong>Тел.:</strong> 058/ 604-433</p>
+            <p><strong>Email:</strong> prslaveikov@abv.bg</p>
+            <p><strong>Директор:</strong> Георги Георгиев</p>
+            <p><strong>Общ брой ученици:</strong> 869 в 38 паралелки</p>
+            <p><strong>Профили:</strong> “Чуждоезиков” – Английски език</p>
+        </div>
+        <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="Снимка на Славейков">
+    </div>
 
-<div class="school" style="--delay: 0s;">
-  <div class="school-info">
-    <h2>СУ “П.Р.Славейков”</h2>
-    <p><strong>Адрес:</strong> ул.”Ангел Кънчев” № 2</p>
-    <p><strong>Тел.:</strong> 058/ 604-433</p>
-    <p><strong>Email:</strong> prslaveikov@abv.bg</p>
-    <p><strong>Директор:</strong> Георги Георгиев</p>
-    <p><strong>Общ брой ученици:</strong> 869 в 38 паралелки</p>
-    <p><strong>Профили:</strong> “Чуждоезиков” – Английски език</p>
-  </div>
-  <div class="school-images">
-    <img src="uploads/Obrazovanie/snimki/slaveikov.jpg" alt="СУ П.Р.Славейков">
-  </div>
-</div>
+    <div class="school">
+        <div class="school-info">
+            <h2>СУ “Св. св. Климент Охридски”</h2>
+            <p><strong>Адрес:</strong> ул.”Русия” № 2</p>
+            <p><strong>Тел.:</strong> 058/603-279</p>
+            <p><strong>Email:</strong> klohridski@mail.bg</p>
+            <p><strong>Директор:</strong> Мария Димитрова</p>
+            <p><strong>Общ брой ученици:</strong> 1012 в 47 паралелки</p>
+            <p><strong>Профили:</strong> Музика, Хореография, Изобразително изкуство</p>
+        </div>
+        <img src="uploads/Obrazovanie/snimki/ohridski.jpg" alt="Снимка на Климент Охридски">
+    </div>
 
-<div class="school" style="--delay: 0.2s;">
-  <div class="school-info">
-    <h2>СУ “Св. св. Климент Охридски”</h2>
-    <p><strong>Адрес:</strong> ул.”Русия” № 2</p>
-    <p><strong>Тел.:</strong> 058/603-279</p>
-    <p><strong>Email:</strong> klohridski@mail.bg</p>
-    <p><strong>Директор:</strong> Мария Димитрова</p>
-    <p><strong>Общ брой ученици:</strong> 1012 в 47 паралелки</p>
-    <p><strong>Профили:</strong> Музика, Хореография, Изобразително изкуство</p>
-  </div>
-  <div class="school-images">
-    <img src="uploads/Obrazovanie/snimki/original_kl.ohr..jpg" alt="СУ Климент Охридски">
-    <img src="uploads/Obrazovanie/snimki/ohridski.jpg" alt="Новo изображение на Климент Охридски">
-  </div>
-</div>
+    <div class="school">
+        <div class="school-info">
+            <h2>СУ “Любен Каравелов”</h2>
+            <p><strong>Адрес:</strong> ж.к.”Балик” 5</p>
+            <p><strong>Тел.:</strong> 058/655-211; 655-212</p>
+            <p><strong>Email:</strong> karavelov@dobrich.net</p>
+            <p><strong>Директор:</strong> Светла Иванова</p>
+            <p><strong>Общ брой ученици:</strong> 444 в 20 паралелки</p>
+            <p><strong>Профили:</strong> “Технологичен” - ИТ и Предприемачество</p>
+        </div>
+        <img src="uploads/Obrazovanie/snimki/sou-luben-karavelov.jpg" alt="Снимка на Любен Каравелов">
+    </div>
 
-<div class="school" style="--delay: 0.4s;">
-  <div class="school-info">
-    <h2>СУ “Любен Каравелов”</h2>
-    <p><strong>Адрес:</strong> ж.к.”Балик” 5</p>
-    <p><strong>Тел.:</strong> 058/655-211; 655-212</p>
-    <p><strong>Email:</strong> karavelov@dobrich.net</p>
-    <p><strong>Директор:</strong> Светла Иванова</p>
-    <p><strong>Общ брой ученици:</strong> 444 в 20 паралелки</p>
-    <p><strong>Профили:</strong> “Технологичен” - ИТ и Предприемачество</p>
-  </div>
-  <div class="school-images">
-    <img src="uploads/Obrazovanie/snimki/original_l.kar..jpg" alt="СУ Любен Каравелов">
-    <img src="uploads/Obrazovanie/snimki/sou-luben-karavelov.jpg" alt="Новo изображение на Любен Каравелов">
-  </div>
-</div>
+    <div class="school">
+        <div class="school-info">
+            <h2>СУ “Св.св.Кирил и Методий”</h2>
+            <p><strong>Адрес:</strong> ул.”Велико Търново” №2</p>
+            <p><strong>Тел.:</strong> 058/ 600-602</p>
+            <p><strong>Email:</strong> hgstkm@abv.bg</p>
+            <p><strong>Директор:</strong> Тодор Георгиев</p>
+            <p><strong>Общ брой ученици:</strong> 729 в 32 паралелки</p>
+            <p><strong>Профили:</strong> “Чуждоезиков”</p>
+        </div>
+        <img src="uploads/Obrazovanie/snimki/humanitarna.jpg" alt="Снимка на Св.св.Кирил и Методий">
+    </div>
 
-<div class="school" style="--delay: 0.6s;">
-  <div class="school-info">
-    <h2>СУ “Св.св.Кирил и Методий”</h2>
-    <p><strong>Адрес:</strong> ул.”Велико Търново” №2</p>
-    <p><strong>Тел.:</strong> 058/ 600-602</p>
-    <p><strong>Email:</strong> hgstkm@abv.bg</p>
-    <p><strong>Директор:</strong> Тодор Георгиев</p>
-    <p><strong>Общ брой ученици:</strong> 729 в 32 паралелки</p>
-    <p><strong>Профили:</strong> “Чуждоезиков”</p>
-  </div>
-  <div class="school-images">
-    <img src="uploads/Obrazovanie/snimki/original_hum.gimn..jpg" alt="СУ Св.св.Кирил и Методий">
-    <img src="uploads/Obrazovanie/snimki/humanitarna.jpg" alt="Новo изображение на Св.св.Кирил и Методий">
-  </div>
-</div>
+    <div class="school">
+        <div class="school-info">
+            <h2>СУ "Димитър Талев"</h2>
+            <p><strong>Адрес:</strong> ул "Генерал Попов"16</p>
+            <p><strong>Тел.:</strong> 058/ 690 - 391, 690 - 393</p>
+            <p><strong>Email:</strong> todor.georgiev@abv.bg</p>
+            <p><strong>Директор:</strong> Весела Панчева</p>
+            <p><strong>Общ брой ученици:</strong> 571 в 25 паралелки</p>
+            <p><strong>Профили:</strong> “Технологичен” – Информационни технологии</p>
+        </div>
+        <img src="uploads/Obrazovanie/snimki/talev.jpg" alt="Снимка на Димитър Талев">
+    </div>
 
-<div class="school" style="--delay: 0.8s;">
-  <div class="school-info">
-    <h2>СУ "Димитър Талев"</h2>
-    <p><strong>Адрес:</strong> ул "Генерал Попов"16</p>
-    <p><strong>Тел.:</strong> 058/ 690 - 391, 690 - 393</p>
-    <p><strong>Email:</strong> todor.georgiev@abv.bg</p>
-    <p><strong>Директор:</strong> Весела Панчева</p>
-    <p><strong>Общ брой ученици:</strong> 571 в 25 паралелки</p>
-    <p><strong>Профили:</strong> “Технологичен” – Информационни технологии</p>
-  </div>
-  <div class="school-images">
-    <img src="uploads/Obrazovanie/snimki/original_d.talew.jpg" alt="СУ Димитър Талев">
-    <img src="uploads/Obrazovanie/snimki/talev.jpg" alt="Новo изображение на Димитър Талев">
-  </div>
-</div>
-
-<footer>
-  <p>© Община Добрич, 2021/2022</p>
-</footer>
-
+    <footer>
+        <p>© Община Добрич, 2021/2022</p>
+    </footer>
 </body>
 </html>
