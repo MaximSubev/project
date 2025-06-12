@@ -50,6 +50,7 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       transition: background-color 0.3s ease;
+      user-select: none;
     }
 
     .dropbtn:hover, .dropbtn.active {
@@ -74,6 +75,7 @@
       display: block;
       border-bottom: 1px solid #eee;
       transition: background-color 0.2s ease;
+      cursor: pointer;
     }
 
     .dropdown-content a:last-child {
@@ -193,21 +195,34 @@
 
     dropbtn.addEventListener("click", function (e) {
       e.stopPropagation();
-      const currentDisplay = window.getComputedStyle(dropdownContent).display;
-      if (currentDisplay === "block") {
+      const isOpen = dropdownContent.style.display === "block";
+      if (isOpen) {
         dropdownContent.style.display = "none";
         dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
       } else {
         dropdownContent.style.display = "block";
         dropbtn.classList.add("active");
+        dropbtn.textContent = "Избор на училища ▲";
       }
     });
 
+    // Close dropdown if clicked outside
     document.addEventListener("click", function (e) {
       if (!dropdownContent.contains(e.target) && !dropbtn.contains(e.target)) {
         dropdownContent.style.display = "none";
         dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
       }
+    });
+
+    // Close dropdown on clicking any dropdown link
+    dropdownContent.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        dropdownContent.style.display = "none";
+        dropbtn.classList.remove("active");
+        dropbtn.textContent = "Избор на училища ▼";
+      });
     });
   </script>
 </body>
