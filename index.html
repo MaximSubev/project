@@ -147,14 +147,13 @@
 <main>
   <aside>
     <h2>Училища в Добрич</h2>
-    <p>Изберете училище от списъка, за да посетите сайта му:</p>
+    <p>Изберете категория училища от списъка, за да посетите страницата:</p>
     <select id="schoolSelect">
       <option value="" disabled selected>-- Изберете училище --</option>
-      <option value="https://dobrichschool1.example.com">Средно училище „Св. Климент Охридски“</option>
-      <option value="https://dobrichschool2.example.com">Основно училище „Н. Й. Вапцаров“</option>
-      <option value="https://dobrichschool3.example.com">Професионална гимназия по икономика</option>
-      <option value="https://dobrichschool4.example.com">Гимназия с преподаване на чужди езици</option>
-      <option value="https://dobrichschool5.example.com">Начално училище „Васил Левски“</option>
+      <option value="chastnischools.html">Частни училища</option>
+      <option value="gimnazii.html">Гимназии</option>
+      <option value="osnovnischools.html">Основни училища</option>
+      <option value="publicschools.html">Обществени училища</option>
     </select>
 
     <h2>Информация</h2>
@@ -174,11 +173,12 @@
 </footer>
 
 <script>
-  // Dropdown opens link in new tab and resets selection
+  // Redirect to selected local page on dropdown change
   document.getElementById('schoolSelect').addEventListener('change', function () {
-    const url = this.value;
-    if (url) window.open(url, '_blank', 'noopener');
-    this.selectedIndex = 0; // reset to placeholder
+    const page = this.value;
+    if (page) {
+      window.location.href = page;
+    }
   });
 
   let map;
@@ -216,19 +216,22 @@
     };
 
     service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, (results, status, pagination) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        results.forEach(place => createMarker(place));
-        // If there is a next page, load it after 2 seconds to get all schools
-        if (pagination && pagination.hasNextPage) {
-          setTimeout(() => {
-            pagination.nextPage();
-          }, 2000);
-        }
-      } else {
-        console.error('PlacesService failed:', status);
+    service.nearbySearch(request, callback);
+  }
+
+  function callback(results, status, pagination) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for(let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
       }
-    });
+      if (pagination && pagination.hasNextPage) {
+        setTimeout(() => {
+          pagination.nextPage();
+        }, 2000);
+      }
+    } else {
+      console.error('PlacesService failed:', status);
+    }
   }
 
   function createMarker(place) {
@@ -256,7 +259,7 @@
     const btn = document.getElementById('toggleSchoolsBtn');
     btn.addEventListener('click', () => {
       schoolsVisible = !schoolsVisible;
-      markers.forEach(marker => marker.setVisible(schoolsVisible));
+      markers.forEach(m => m.setVisible(schoolsVisible));
       btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
     });
   });
