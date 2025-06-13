@@ -282,16 +282,4 @@
 
   // On load, set theme from localStorage or system preference
   window.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem('theme-dark');
-    if (saved === null) {
-      // Use system preference
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark);
-    } else {
-      setTheme(saved === 'true');
-    }
-  });
-</script>
-
-</body>
-</html>
+    const saved = localStorage.getItem('theme-dark
