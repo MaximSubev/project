@@ -1,90 +1,93 @@
-// Redirect to chosen page from dropdown
-document.getElementById('schoolSelect').addEventListener('change', function () {
-  const page = this.value;
-  if (page) {
-    window.location.href = page;
+<script>
+  // Your entire JavaScript code here
+  // Example:
+  document.getElementById('schoolSelect').addEventListener('change', function () {
+    const page = this.value;
+    if (page) {
+      window.location.href = page;
+    }
+  });
+
+  let map;
+  let service;
+  let infowindow;
+  let markers = [];
+  let schoolsVisible = true;
+
+  function initMap() {
+    const dobich = new google.maps.LatLng(43.5725, 27.8279);
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: dobich,
+      zoom: 13,
+      styles: [
+        {
+          featureType: 'poi.school',
+          stylers: [{ color: '#f39c12' }, { visibility: 'on' }]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }]
+        }
+      ]
+    });
+
+    infowindow = new google.maps.InfoWindow();
+
+    const request = {
+      location: dobich,
+      radius: '5000',
+      keyword: 'училище',
+      type: ['school']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
   }
-});
 
-let map;
-let service;
-let infowindow;
-let markers = [];
-let schoolsVisible = true;
-
-function initMap() {
-  const dobich = new google.maps.LatLng(43.5725, 27.8279);
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: dobich,
-    zoom: 13,
-    styles: [
-      {
-        featureType: 'poi.school',
-        stylers: [{ color: '#f39c12' }, { visibility: 'on' }]
-      },
-      {
-        featureType: 'poi',
-        elementType: 'labels',
-        stylers: [{ visibility: 'off' }]
+  function callback(results, status, pagination) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (let i = 0; i < results.length; i++) {
+        createMarker(results[i]);
       }
-    ]
-  });
-
-  infowindow = new google.maps.InfoWindow();
-
-  const request = {
-    location: dobich,
-    radius: '5000',
-    keyword: 'училище',
-    type: ['school']
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback);
-}
-
-function callback(results, status, pagination) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (let i = 0; i < results.length; i++) {
-      createMarker(results[i]);
+      if (pagination && pagination.hasNextPage) {
+        setTimeout(() => {
+          pagination.nextPage();
+        }, 2000);
+      }
+    } else {
+      console.error('PlacesService failed:', status);
     }
-    if (pagination && pagination.hasNextPage) {
-      setTimeout(() => {
-        pagination.nextPage();
-      }, 2000);
-    }
-  } else {
-    console.error('PlacesService failed:', status);
   }
-}
 
-function createMarker(place) {
-  if (!place.geometry || !place.geometry.location) return;
+  function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
 
-  const marker = new google.maps.Marker({
-    map,
-    position: place.geometry.location,
-    title: place.name,
-    icon: {
-      url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
-      scaledSize: new google.maps.Size(35, 35)
-    }
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+      title: place.name,
+      icon: {
+        url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+        scaledSize: new google.maps.Size(35, 35)
+      }
+    });
+
+    markers.push(marker);
+
+    marker.addListener("click", () => {
+      infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
+      infowindow.open(map, marker);
+    });
+  }
+
+  const btn = document.getElementById('toggleSchoolsBtn');
+  btn.addEventListener('click', () => {
+    if (markers.length === 0) return; // no markers to toggle
+
+    schoolsVisible = !schoolsVisible;
+    markers.forEach(m => m.setVisible(schoolsVisible));
+    btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
   });
-
-  markers.push(marker);
-
-  marker.addListener("click", () => {
-    infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
-    infowindow.open(map, marker);
-  });
-}
-
-const btn = document.getElementById('toggleSchoolsBtn');
-btn.addEventListener('click', () => {
-  if (markers.length === 0) return; // no markers to toggle
-
-  schoolsVisible = !schoolsVisible;
-  markers.forEach(m => m.setVisible(schoolsVisible));
-  btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
-});
+</script>
