@@ -5,25 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Проект от Максим и Димитър</title>
 <style>
+  :root {
+    --color-bg-light: linear-gradient(135deg, #a2d9ce 0%, #6dd5ed 100%);
+    --color-bg-dark: #0a1f2a;
+    --color-text-light: #023436;
+    --color-text-dark: #cbd5e1;
+    --color-primary-light: #0d9488;
+    --color-primary-dark: #14b8a6;
+    --color-dropdown-bg-light: rgba(255 255 255 / 0.95);
+    --color-dropdown-bg-dark: rgba(0 0 0 / 0.85);
+    --color-shadow-light: rgba(0, 0, 0, 0.1);
+    --color-shadow-dark: rgba(0, 0, 0, 0.8);
+  }
+
   body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #a2d9ce 0%, #6dd5ed 100%);
+    background: var(--color-bg-light);
     margin: 0;
     padding: 2rem 1rem 4rem;
-    color: #023436;
+    color: var(--color-text-light);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  body.dark {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
   }
   header {
     font-size: 2.8rem;
     font-weight: bold;
-    margin-bottom: 2rem;
-    color: #0d9488;
+    margin-bottom: 1rem;
+    color: var(--color-primary-light);
     text-align: center;
-    text-shadow: 0 0 5px #14b8a6;
+    text-shadow: 0 0 5px var(--color-primary-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
+  body.dark header {
+    color: var(--color-primary-dark);
+    text-shadow: 0 0 5px var(--color-primary-light);
+  }
+  .theme-toggle {
+    background: none;
+    border: 2px solid var(--color-primary-light);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 1rem;
+    color: var(--color-primary-light);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+  body.dark .theme-toggle {
+    border-color: var(--color-primary-dark);
+    color: var(--color-primary-dark);
+  }
+  .theme-toggle:hover {
+    background-color: var(--color-primary-light);
+    color: white;
+  }
+  body.dark .theme-toggle:hover {
+    background-color: var(--color-primary-dark);
+  }
+
   .dropdown {
     position: relative;
     max-width: 320px;
@@ -32,7 +81,7 @@
     text-align: center;
   }
   .dropbtn {
-    background-color: #0d9488;
+    background-color: var(--color-primary-light);
     color: white;
     padding: 14px 24px;
     font-size: 1.15rem;
@@ -40,36 +89,59 @@
     border-radius: 12px;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s ease;
   }
   .dropbtn:hover {
-    background-color: #14b8a6;
+    background-color: var(--color-primary-dark);
   }
+  body.dark .dropbtn {
+    background-color: var(--color-primary-dark);
+  }
+  body.dark .dropbtn:hover {
+    background-color: var(--color-primary-light);
+  }
+
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: rgba(255 255 255 / 0.95);
+    background-color: var(--color-dropdown-bg-light);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
     width: 100%;
     top: 48px;
     left: 0;
     z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  body.dark .dropdown-content {
+    background-color: var(--color-dropdown-bg-dark);
+    box-shadow: 0 8px 20px rgba(20, 184, 166, 0.8);
   }
   .dropdown-content a {
-    color: #0d9488;
+    color: var(--color-primary-light);
     padding: 14px 20px;
     text-decoration: none;
     display: block;
     border-bottom: 1px solid #a6f0e4;
     font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  body.dark .dropdown-content a {
+    color: var(--color-primary-dark);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.5);
   }
   .dropdown-content a:last-child {
     border-bottom: none;
   }
   .dropdown-content a:hover {
-    background-color: #14b8a6;
+    background-color: var(--color-primary-dark);
     color: white;
   }
+  body.dark .dropdown-content a:hover {
+    background-color: var(--color-primary-light);
+    color: #023436;
+  }
+
   #map-container {
     max-width: 960px;
     width: 100%;
@@ -78,41 +150,67 @@
   }
   #map-container h3 {
     margin-bottom: 1rem;
-    color: #0d9488;
+    color: var(--color-primary-light);
     font-weight: 700;
+    transition: color 0.3s ease;
+  }
+  body.dark #map-container h3 {
+    color: var(--color-primary-dark);
   }
   iframe#map {
     width: 100%;
     height: 520px;
     border-radius: 20px;
     border: none;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 30px var(--color-shadow-light);
+    transition: box-shadow 0.3s ease;
   }
+  body.dark iframe#map {
+    box-shadow: 0 12px 30px var(--color-shadow-dark);
+  }
+
   .dobrich-info {
     max-width: 900px;
     background: rgba(255 255 255 / 0.75);
     padding: 2rem 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    color: #023436;
+    color: var(--color-text-light);
     font-size: 1.1rem;
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  body.dark .dobrich-info {
+    background: rgba(20, 20, 20, 0.85);
+    color: var(--color-text-dark);
+    box-shadow: 0 10px 25px rgba(20, 184, 166, 0.8);
   }
   .dobrich-info h2 {
     margin-top: 0;
     margin-bottom: 1rem;
-    color: #0d9488;
+    color: var(--color-primary-light);
+    transition: color 0.3s ease;
+  }
+  body.dark .dobrich-info h2 {
+    color: var(--color-primary-dark);
   }
   footer {
     margin-top: 4rem;
     font-size: 0.9rem;
     color: #444;
+    transition: color 0.3s ease;
+  }
+  body.dark footer {
+    color: #a0aec0;
   }
 </style>
 </head>
 <body>
 
-<header>Проект от Максим и Димитър</header>
+<header>
+  Проект от Максим и Димитър
+  <button class="theme-toggle" id="theme-toggle" aria-label="Превключи тъмен режим">Тъмен режим</button>
+</header>
 
 <div class="dropdown">
   <button class="dropbtn" id="dropbtn" aria-haspopup="true" aria-expanded="false">Избор на училища ▼</button>
@@ -147,9 +245,12 @@
 <script>
   const dropbtn = document.getElementById('dropbtn');
   const dropdownContent = document.getElementById('dropdown-content');
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
 
+  // Dropdown toggle
   dropbtn.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent click from bubbling to window
+    event.stopPropagation();
     const isShown = dropdownContent.style.display === 'block';
     dropdownContent.style.display = isShown ? 'none' : 'block';
     dropbtn.setAttribute('aria-expanded', !isShown);
@@ -159,6 +260,35 @@
     if (dropdownContent.style.display === 'block') {
       dropdownContent.style.display = 'none';
       dropbtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Dark theme toggle and persist preference
+  function setTheme(dark) {
+    if (dark) {
+      body.classList.add('dark');
+      themeToggle.textContent = 'Светъл режим';
+    } else {
+      body.classList.remove('dark');
+      themeToggle.textContent = 'Тъмен режим';
+    }
+    localStorage.setItem('theme-dark', dark);
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = body.classList.contains('dark');
+    setTheme(!isDark);
+  });
+
+  // On load, set theme from localStorage or system preference
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('theme-dark');
+    if (saved === null) {
+      // Use system preference
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark);
+    } else {
+      setTheme(saved === 'true');
     }
   });
 </script>
