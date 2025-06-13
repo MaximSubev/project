@@ -1,13 +1,4 @@
 <script>
-  // Your entire JavaScript code here
-  // Example:
-  document.getElementById('schoolSelect').addEventListener('change', function () {
-    const page = this.value;
-    if (page) {
-      window.location.href = page;
-    }
-  });
-
   let map;
   let service;
   let infowindow;
@@ -82,12 +73,23 @@
     });
   }
 
-  const btn = document.getElementById('toggleSchoolsBtn');
-  btn.addEventListener('click', () => {
-    if (markers.length === 0) return; // no markers to toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dropdown redirect
+    const schoolSelect = document.getElementById('schoolSelect');
+    schoolSelect.addEventListener('change', () => {
+      const page = schoolSelect.value;
+      if (page) {
+        window.location.href = page;
+      }
+    });
 
-    schoolsVisible = !schoolsVisible;
-    markers.forEach(m => m.setVisible(schoolsVisible));
-    btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
+    // Toggle button for schools
+    const btn = document.getElementById('toggleSchoolsBtn');
+    btn.addEventListener('click', () => {
+      if (markers.length === 0) return;
+      schoolsVisible = !schoolsVisible;
+      markers.forEach(m => m.setVisible(schoolsVisible));
+      btn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
+    });
   });
 </script>
