@@ -12,23 +12,23 @@
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f2f5;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
       color: #2c3e50;
-      line-height: 1.6;
       padding: 20px;
       max-width: 1100px;
       margin: auto;
+      position: relative;
     }
 
     header {
-      background: linear-gradient(270deg, #ff003c, #28a745, #007bff);
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #28a745, #007bff);
       background-size: 600% 600%;
       animation: rgbShift 12s ease infinite;
       color: white;
@@ -36,10 +36,10 @@
       text-align: center;
       font-size: 2.8rem;
       font-weight: bold;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .dropdown {
@@ -111,6 +111,22 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
+    .dobrich-info {
+      background-color: #ffffffcc;
+      margin-top: 60px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .dobrich-info h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #006699;
+    }
+
     @media (max-width: 700px) {
       .dropbtn {
         width: 100%;
@@ -156,6 +172,13 @@
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
+  </div>
+
+  <div class="dobrich-info">
+    <h2>За град Добрич</h2>
+    <p>
+      Добрич е един от големите градове в Североизточна България и административен център на област Добрич. Известен е с богатата си културна история, красиви паркове и активен образователен живот. Градът предлага разнообразие от училища и гимназии, които развиват таланта и потенциала на младите хора. В Добрич се намират както държавни, така и частни образователни институции с високо качество на обучение.
+    </p>
   </div>
 
   <script>
