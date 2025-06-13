@@ -26,7 +26,18 @@
     <button id="toggleSchoolsBtn" aria-pressed="true">Скрий училищата</button>
   </aside>
 
-  <div id="map" style="width: 100%; height: 600px; border-radius: 12px;"></div>
+  <!-- REPLACED map div with your iframe container -->
+  <div id="map-container">
+    <h3>Карта на гимназиите в Добрич</h3>
+    <iframe
+      id="map"
+      src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7765.380969576498!2d27.8264169358564!3d43.56798099144095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8+%D0%B4%D0%BE%D0%B1%D1%80%D0%B8%D1%87!5e0!3m2!1sbg!2sbg!4v1686579452629!5m2!1sbg!2sbg"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      style="width: 100%; height: 600px; border-radius: 12px; border: none;"
+    ></iframe>
+  </div>
 </main>
 
 <footer>
@@ -42,6 +53,9 @@
     }
   });
 
+  // The Google Maps JS code below is now not needed because we're using iframe instead,
+  // but left here in case you want to restore the JS map later.
+  /*
   let map;
   let service;
   let infowindow;
@@ -112,10 +126,9 @@
     markers.forEach(m => m.setVisible(schoolsVisible));
     document.getElementById('toggleSchoolsBtn').textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
   });
+  */
 </script>
 
-<!-- Replace YOUR_API_KEY with your real Google Maps API key -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
-
+<!-- No Google Maps API JS script included since iframe is used -->
 </body>
 </html>
