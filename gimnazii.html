@@ -22,6 +22,7 @@
       font-size: 28px;
       font-weight: bold;
     }
+
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -43,6 +44,7 @@
       display: flex;
       max-width: 900px;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     .school-card img {
@@ -50,10 +52,12 @@
       height: auto;
       border-radius: 10px;
       object-fit: cover;
+      flex-shrink: 0;
     }
 
     .school-info {
       flex: 1;
+      min-width: 250px;
     }
 
     .school-info h2 {
@@ -81,6 +85,7 @@
       transition: background-color 0.3s ease;
       z-index: 1000;
     }
+
     .return-home:hover {
       background-color: #001f4d;
     }
@@ -104,6 +109,7 @@
 
   <h1>Гимназии в град Добрич (2021/2022)</h1>
 
+  <!-- Езикова гимназия -->
   <div class="school-card">
     <img src="uploads/Obrazovanie/snimki/ezikova.jpg" alt="Езикова гимназия">
     <div class="school-info">
@@ -117,20 +123,23 @@
     </div>
   </div>
 
+  <!-- СУ Ломоносов -->
   <div class="school-card">
-  <img src="uploads/Obrazovanie/snimki/lomonosov.jpg" alt="СУ Ломоносов">
-  <img src="uploads/Obrazovanie/snimki/lomonosov2.jpg" alt="СУ Ломоносов - Втора снимка">
-  <div class="school-info">
-    <h2>СУ „Ломоносов“</h2>
-    <p><strong>Адрес:</strong> ул. „Кирил и Методий“ № 10</p>
-    <p><strong>Директор:</strong> Мария Николова</p>
-    <p><strong>Телефон:</strong> 058 601 234</p>
-    <p><strong>Имейл:</strong> lomonosov@edu.bg</p>
-    <p><strong>Профили:</strong> Хуманитарен, Природоматематически</p>
-    <p><strong>Брой ученици:</strong> 350</p>
+    <div>
+      <img src="uploads/Obrazovanie/snimki/lomonosov.jpg" alt="СУ Ломоносов">
+      <img src="uploads/Obrazovanie/snimki/lomonosov2.jpg" alt="СУ Ломоносов - Втора снимка" style="margin-top: 10px;">
+    </div>
+    <div class="school-info">
+      <h2>СУ „Ломоносов“</h2>
+      <p><strong>Адрес:</strong> ул. „Кирил и Методий“ № 10</p>
+      <p><strong>Директор:</strong> Мария Николова</p>
+      <p><strong>Телефон:</strong> 058 601 234</p>
+      <p><strong>Имейл:</strong> lomonosov@edu.bg</p>
+      <p><strong>Профили:</strong> Хуманитарен, Природоматематически</p>
+      <p><strong>Брой ученици:</strong> 350</p>
+    </div>
   </div>
-</div>
-  
+
   <footer>
     © Община Добрич, 2021/2022
   </footer>
