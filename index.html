@@ -2,12 +2,26 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Проект от Максим и Димитър</title>
   <style>
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      background-color: #f4f6f8;
+      padding: 0 20px 60px;
+      color: #2c3e50;
     }
 
     header {
@@ -17,65 +31,57 @@
       color: white;
       padding: 40px 20px;
       text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       font-weight: bold;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      background-color: #f4f6f8;
-      padding: 0 20px 40px 20px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      margin: 30px 0 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     .dropdown {
       position: relative;
       display: inline-block;
       margin-bottom: 30px;
-      user-select: none;
     }
 
     .dropbtn {
       background-color: #34495e;
       color: white;
-      padding: 12px 20px;
+      padding: 14px 24px;
       font-size: 16px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
-      user-select: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .dropbtn:hover, .dropbtn.active {
+    .dropbtn:hover,
+    .dropbtn.active {
       background-color: #16a085;
+      transform: scale(1.02);
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
       background-color: #ffffff;
-      min-width: 220px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 8px;
-      margin-top: 5px;
+      min-width: 240px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      margin-top: 8px;
       z-index: 1000;
+      overflow: hidden;
     }
 
     .dropdown-content a {
       color: #2c3e50;
-      padding: 12px 18px;
+      padding: 14px 20px;
       text-decoration: none;
       display: block;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.2s ease;
-      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .dropdown-content a:last-child {
@@ -88,16 +94,21 @@
     }
 
     #map-container {
-      margin-top: 30px;
+      margin-top: 40px;
       text-align: center;
+    }
+
+    #map-container h3 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
     }
 
     #map {
       width: 100%;
-      max-width: 700px;
+      max-width: 800px;
       height: 600px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       border: none;
     }
 
@@ -105,8 +116,13 @@
       .dropbtn {
         width: 100%;
       }
+
       .dropdown-content {
         min-width: 100%;
+      }
+
+      #map {
+        height: 400px;
       }
     }
   </style>
@@ -149,7 +165,6 @@
       dropbtn.classList.toggle('active', !visible);
     });
 
-    // Close dropdown if clicked outside
     window.addEventListener('click', (e) => {
       if (!dropdown.contains(e.target)) {
         dropdownContent.style.display = 'none';
