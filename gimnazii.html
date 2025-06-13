@@ -1,98 +1,70 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Гимназии в град Добрич - 2021/2022</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Гимназии в Добрич</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e7f0fe;
-      margin: 30px;
-      color: #1a1a1a;
-      max-width: 800px;
-      margin: auto;
-      padding: 0 20px 40px 20px;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
     }
 
     header {
-      background: linear-gradient(270deg, red, green, blue);
-      background-size: 600% 600%;
-      animation: rgbShift 15s ease infinite;
+      background: linear-gradient(90deg, red, green, blue);
+      padding: 20px;
       color: white;
-      padding: 40px 20px;
       text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 2.5rem;
+      font-size: 28px;
       font-weight: bold;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    @keyframes rgbShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     h1 {
-      color: #003366;
       text-align: center;
-      margin-bottom: 40px;
+      color: #333;
+      margin-top: 30px;
     }
 
-    .school {
-      display: flex;
-      background: #fff;
+    .school-card {
+      background-color: white;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: 30px auto;
       padding: 20px;
-      margin-bottom: 30px;
-      gap: 25px;
-      align-items: flex-start;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      max-width: 900px;
+      gap: 20px;
     }
 
-    .school:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    .school img {
-      max-width: 260px;
+    .school-card img {
+      width: 250px;
+      height: auto;
       border-radius: 10px;
       object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      flex-shrink: 0;
     }
 
     .school-info {
-      max-width: 600px;
+      flex: 1;
     }
 
     .school-info h2 {
       margin-top: 0;
-      color: #00509e;
-      margin-bottom: 12px;
+      color: #0066cc;
     }
 
     .school-info p {
-      margin: 6px 0;
-      font-size: 1rem;
-      line-height: 1.35;
-    }
-
-    .school-info p strong {
-      color: #003366;
+      margin: 8px 0;
+      font-size: 15px;
     }
 
     footer {
       text-align: center;
-      font-style: italic;
-      color: #00509e;
       margin-top: 50px;
-      font-size: 0.9rem;
+      padding-bottom: 40px;
+      color: #666;
+      font-style: italic;
     }
   </style>
 </head>
@@ -104,49 +76,47 @@
 
   <h1>Гимназии в град Добрич (2021/2022)</h1>
 
-  <div id="schools">
-    <div class="school">
-      <img src="uploads/Obrazovanie/snimki/ezikova.jpg" alt="Езикова гимназия" />
-      <div class="school-info">
-        <h2>Езикова гимназия „Гео Милев“</h2>
-        <p><strong>Адрес:</strong> ул. „Вардар“ № 2</p>
-        <p><strong>Директор:</strong> Милена Иванова</p>
-        <p><strong>Телефон:</strong> 058 602 912</p>
-        <p><strong>Имейл:</strong> <a href="mailto:geo_milev@edu.bg">geo_milev@edu.bg</a></p>
-        <p><strong>Профили:</strong> Английски, Немски, Френски език</p>
-        <p><strong>Брой ученици:</strong> 520</p>
-      </div>
+  <div class="school-card">
+    <img src="uploads/Obrazovanie/snimki/ezikova.jpg" alt="Езикова гимназия">
+    <div class="school-info">
+      <h2>Езикова гимназия „Гео Милев“</h2>
+      <p><strong>Адрес:</strong> ул. „Вардар“ № 2</p>
+      <p><strong>Директор:</strong> Милена Иванова</p>
+      <p><strong>Телефон:</strong> 058 602 912</p>
+      <p><strong>Имейл:</strong> geo_milev@edu.bg</p>
+      <p><strong>Профили:</strong> Английски, Немски, Френски език</p>
+      <p><strong>Брой ученици:</strong> 520</p>
     </div>
+  </div>
 
-    <div class="school">
-      <img src="uploads/Obrazovanie/snimki/pgto.jpg" alt="ПГТО" />
-      <div class="school-info">
-        <h2>ПГ по техника и облекло</h2>
-        <p><strong>Адрес:</strong> бул. „Русия“ № 47</p>
-        <p><strong>Директор:</strong> Петър Георгиев</p>
-        <p><strong>Телефон:</strong> 058 603 456</p>
-        <p><strong>Имейл:</strong> <a href="mailto:pgto@edu.bg">pgto@edu.bg</a></p>
-        <p><strong>Профили:</strong> Технологични, Моден дизайн</p>
-        <p><strong>Брой ученици:</strong> 310</p>
-      </div>
+  <div class="school-card">
+    <img src="uploads/Obrazovanie/snimki/pgto.jpg" alt="ПГТО">
+    <div class="school-info">
+      <h2>ПГ по техника и облекло</h2>
+      <p><strong>Адрес:</strong> бул. „Русия“ № 47</p>
+      <p><strong>Директор:</strong> Петър Георгиев</p>
+      <p><strong>Телефон:</strong> 058 603 456</p>
+      <p><strong>Имейл:</strong> pgto@edu.bg</p>
+      <p><strong>Профили:</strong> Технологични, Моден дизайн</p>
+      <p><strong>Брой ученици:</strong> 310</p>
     </div>
+  </div>
 
-    <div class="school">
-      <img src="uploads/Obrazovanie/snimki/pgmet.jpg" alt="ПГМЕТ" />
-      <div class="school-info">
-        <h2>ПГ по механотехника и електротехника</h2>
-        <p><strong>Адрес:</strong> ул. „Иван Вазов“ № 15</p>
-        <p><strong>Директор:</strong> Антоанета Димова</p>
-        <p><strong>Телефон:</strong> 058 604 111</p>
-        <p><strong>Имейл:</strong> <a href="mailto:pgmet@edu.bg">pgmet@edu.bg</a></p>
-        <p><strong>Профили:</strong> Електроника, Машиностроене</p>
-        <p><strong>Брой ученици:</strong> 280</p>
-      </div>
+  <div class="school-card">
+    <img src="uploads/Obrazovanie/snimki/pgmet.jpg" alt="ПГМЕТ">
+    <div class="school-info">
+      <h2>ПГ по механотехника и електротехника</h2>
+      <p><strong>Адрес:</strong> ул. „Иван Вазов“ № 15</p>
+      <p><strong>Директор:</strong> Антоанета Димова</p>
+      <p><strong>Телефон:</strong> 058 604 111</p>
+      <p><strong>Имейл:</strong> pgmet@edu.bg</p>
+      <p><strong>Профили:</strong> Електроника, Машиностроене</p>
+      <p><strong>Брой ученици:</strong> 280</p>
     </div>
   </div>
 
   <footer>
-    <p>© Община Добрич, 2021/2022</p>
+    © Община Добрич, 2021/2022
   </footer>
 
 </body>
