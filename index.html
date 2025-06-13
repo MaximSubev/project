@@ -47,7 +47,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: rgba(255 255 255 / 0.85);
+    background-color: rgba(255 255 255 / 0.95);
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
     width: 100%;
@@ -115,12 +115,12 @@
 <header>Проект от Максим и Димитър</header>
 
 <div class="dropdown">
-  <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
-  <div class="dropdown-content" id="dropdown-content">
-    <a href="publicschools.html">Средни училища</a>
-    <a href="osnovnischools.html">Основни училища</a>
-    <a href="gimnazii.html">Гимназии</a>
-    <a href="private.html">Частни училища</a>
+  <button class="dropbtn" id="dropbtn" aria-haspopup="true" aria-expanded="false">Избор на училища ▼</button>
+  <div class="dropdown-content" id="dropdown-content" role="menu" aria-labelledby="dropbtn">
+    <a href="publicschools.html" role="menuitem">Средни училища</a>
+    <a href="osnovnischools.html" role="menuitem">Основни училища</a>
+    <a href="gimnazii.html" role="menuitem">Гимназии</a>
+    <a href="private.html" role="menuitem">Частни училища</a>
   </div>
 </div>
 
@@ -148,14 +148,17 @@
   const dropbtn = document.getElementById('dropbtn');
   const dropdownContent = document.getElementById('dropdown-content');
 
-  dropbtn.addEventListener('click', () => {
+  dropbtn.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click from bubbling to window
     const isShown = dropdownContent.style.display === 'block';
     dropdownContent.style.display = isShown ? 'none' : 'block';
+    dropbtn.setAttribute('aria-expanded', !isShown);
   });
 
-  window.addEventListener('click', e => {
-    if (!dropbtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+  window.addEventListener('click', () => {
+    if (dropdownContent.style.display === 'block') {
       dropdownContent.style.display = 'none';
+      dropbtn.setAttribute('aria-expanded', 'false');
     }
   });
 </script>
