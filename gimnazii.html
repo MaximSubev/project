@@ -3,15 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Основни училища в град Добрич - 2021/2022</title>
+  <title>Гимназии в град Добрич - 2021/2022</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #e7f0fe;
-      margin: 30px auto;
-      max-width: 1000px;
+      margin: 30px;
       color: #1a1a1a;
-      padding: 0 20px;
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px 40px 20px;
+    }
+
+    header {
+      background: linear-gradient(270deg, red, green, blue);
+      background-size: 600% 600%;
+      animation: rgbShift 15s ease infinite;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    @keyframes rgbShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -72,53 +94,55 @@
       margin-top: 50px;
       font-size: 0.9rem;
     }
-
-    a.return-home {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #003366;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 1rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: background-color 0.3s ease;
-      z-index: 1000;
-    }
-
-    a.return-home:hover {
-      background-color: #001f4d;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
-  <h1>Основни училища в град Добрич (2021/2022)</h1>
+  <header>
+    Проект от Максим и Димитър
+  </header>
+
+  <h1>Гимназии в град Добрич (2021/2022)</h1>
 
   <div id="schools">
-    <!-- School entries stay exactly as provided -->
-    <!-- ... (paste all .school divs here as in your original content) ... -->
-
-    <!-- Example (keep all others below the same way) -->
-    <div class="school" data-name="ОУ „Хан Аспарух“">
-      <img src="uploads/Obrazovanie/snimki/asparuh.jpg" alt="ОУ Хан Аспарух" />
+    <div class="school">
+      <img src="uploads/Obrazovanie/snimki/ezikova.jpg" alt="Езикова гимназия" />
       <div class="school-info">
-        <h2>ОУ „Хан Аспарух“</h2>
-        <p><strong>Адрес:</strong> ж.к. „Добротица“ № 11</p>
-        <p><strong>Директор:</strong> Невяна Люцканова</p>
-        <p><strong>Телефон:</strong> 603 022</p>
-        <p><strong>Имейл:</strong> <a href="mailto:hanasparuh.dobrich@abv.bg">hanasparuh.dobrich@abv.bg</a></p>
-        <p><strong>Брой паралелки:</strong> 19</p>
-        <p><strong>Брой ученици:</strong> 447</p>
+        <h2>Езикова гимназия „Гео Милев“</h2>
+        <p><strong>Адрес:</strong> ул. „Вардар“ № 2</p>
+        <p><strong>Директор:</strong> Милена Иванова</p>
+        <p><strong>Телефон:</strong> 058 602 912</p>
+        <p><strong>Имейл:</strong> <a href="mailto:geo_milev@edu.bg">geo_milev@edu.bg</a></p>
+        <p><strong>Профили:</strong> Английски, Немски, Френски език</p>
+        <p><strong>Брой ученици:</strong> 520</p>
       </div>
     </div>
 
-    <!-- Add remaining schools below (Йовков, Вапцаров, etc.) -->
-    <!-- ... -->
+    <div class="school">
+      <img src="uploads/Obrazovanie/snimki/pgto.jpg" alt="ПГТО" />
+      <div class="school-info">
+        <h2>ПГ по техника и облекло</h2>
+        <p><strong>Адрес:</strong> бул. „Русия“ № 47</p>
+        <p><strong>Директор:</strong> Петър Георгиев</p>
+        <p><strong>Телефон:</strong> 058 603 456</p>
+        <p><strong>Имейл:</strong> <a href="mailto:pgto@edu.bg">pgto@edu.bg</a></p>
+        <p><strong>Профили:</strong> Технологични, Моден дизайн</p>
+        <p><strong>Брой ученици:</strong> 310</p>
+      </div>
+    </div>
+
+    <div class="school">
+      <img src="uploads/Obrazovanie/snimki/pgmet.jpg" alt="ПГМЕТ" />
+      <div class="school-info">
+        <h2>ПГ по механотехника и електротехника</h2>
+        <p><strong>Адрес:</strong> ул. „Иван Вазов“ № 15</p>
+        <p><strong>Директор:</strong> Антоанета Димова</p>
+        <p><strong>Телефон:</strong> 058 604 111</p>
+        <p><strong>Имейл:</strong> <a href="mailto:pgmet@edu.bg">pgmet@edu.bg</a></p>
+        <p><strong>Профили:</strong> Електроника, Машиностроене</p>
+        <p><strong>Брой ученици:</strong> 280</p>
+      </div>
+    </div>
   </div>
 
   <footer>
