@@ -2,31 +2,171 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Училища в Добрич - Начална страница</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Гимназии в Добрич</title>
+  <style>
+    @keyframes rgbShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: linear-gradient(270deg, red, green, blue);
+      background-size: 600% 600%;
+      animation: rgbShift 15s ease infinite;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f4f6f8;
+      padding: 0 20px 40px 20px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    .dropbtn {
+      background-color: #34495e;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .dropbtn:hover, .dropbtn.active {
+      background-color: #16a085;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      margin-top: 5px;
+      z-index: 1000;
+    }
+
+    .dropdown-content a {
+      color: #2c3e50;
+      padding: 12px 18px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #16a085;
+      color: white;
+    }
+
+    #search {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .school {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .school h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    #map-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    #map {
+      width: 100%;
+      max-width: 700px;
+      height: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      border: none;
+      height: 600px;
+    }
+
+    @media (max-width: 600px) {
+      .dropbtn {
+        width: 100%;
+      }
+      .dropdown-content {
+        min-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>Проект от Максим и Димитър</h1>
-  <p>Интерактивна карта с всички училища в Добрич</p>
-</header>
+  <header>
+    Проект от Максим и Димитър
+  </header>
 
-<main>
-  <aside>
-    <h2>Навигация към страници</h2>
-    <select id="schoolSelect" aria-label="Избор на категория училища">
-      <option value="" disabled selected>-- Изберете категория --</option>
-      <option value="private.html">Частни училища</option>
-      <option value="gimnazii.html">Гимназии</option>
-      <option value="osnovnischools.html">Основни училища</option>
-      <option value="publicschools.html">Обществени училища</option>
-    </select>
-    <button id="toggleSchoolsBtn" aria-pressed="true">Скрий училищата</button>
-  </aside>
+  <div class="dropdown" id="dropdown">
+    <button class="dropbtn" id="dropbtn">Избор на училища ▼</button>
+    <div class="dropdown-content" id="dropdown-content">
+      <a href="publicschools.html">Средни училища</a>
+      <a href="osnovnischools.html">Основни училища</a>
+      <a href="gimnazii.html">Гимназии</a>
+      <a href="chastnischools.html">Частни училища</a>
+    </div>
+  </div>
 
-  <!-- REPLACED map div with your iframe container -->
+  <input type="text" id="search" placeholder="Търси по име..." />
+
+  <div id="schools">
+    <div class="school" data-name="Езикова гимназия 'Гео Милев'">
+      <h2>ЕГ "Гео Милев"</h2>
+      <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
+    </div>
+
+    <div class="school" data-name="ПМГ 'Д-р Петър Берон'">
+      <h2>ПМГ "Д-р Петър Берон"</h2>
+      <p>Природо-математическа гимназия, ул. „Ген. Георги Попов“ 5</p>
+    </div>
+  </div>
+
   <div id="map-container">
     <h3>Карта на гимназиите в Добрич</h3>
     <iframe
@@ -35,100 +175,42 @@
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      style="width: 100%; height: 600px; border-radius: 12px; border: none;"
     ></iframe>
   </div>
-</main>
 
-<footer>
-  &copy; 2025 Максим и Димитър - Всички права запазени
-</footer>
+  <script>
+    const dropdown = document.getElementById('dropdown');
+    const dropbtn = document.getElementById('dropbtn');
+    const dropdownContent = document.getElementById('dropdown-content');
+    const searchInput = document.getElementById('search');
+    const schools = document.querySelectorAll('.school');
 
-<script>
-  // Redirect from dropdown
-  document.getElementById('schoolSelect').addEventListener('change', function () {
-    const page = this.value;
-    if (page) {
-      window.location.href = page;
-    }
-  });
-
-  // The Google Maps JS code below is now not needed because we're using iframe instead,
-  // but left here in case you want to restore the JS map later.
-  /*
-  let map;
-  let service;
-  let infowindow;
-  let markers = [];
-  let schoolsVisible = true;
-
-  function initMap() {
-    const dobich = new google.maps.LatLng(43.5725, 27.8279);
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: dobich,
-      zoom: 13,
-      styles: [
-        { featureType: 'poi.school', stylers: [{ color: '#f39c12' }, { visibility: 'on' }] },
-        { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] }
-      ]
+    dropbtn.addEventListener('click', () => {
+      const visible = dropdownContent.style.display === 'block';
+      dropdownContent.style.display = visible ? 'none' : 'block';
+      dropbtn.classList.toggle('active', !visible);
     });
 
-    infowindow = new google.maps.InfoWindow();
-
-    const request = {
-      location: dobich,
-      radius: '5000',
-      keyword: 'училище',
-      type: ['school']
-    };
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-  }
-
-  function callback(results, status, pagination) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-      if (pagination && pagination.hasNextPage) {
-        setTimeout(() => {
-          pagination.nextPage();
-        }, 2000);
-      }
-    } else {
-      console.error('PlacesService failed:', status);
-    }
-  }
-
-  function createMarker(place) {
-    if (!place.geometry || !place.geometry.location) return;
-    const marker = new google.maps.Marker({
-      map,
-      position: place.geometry.location,
-      title: place.name,
-      icon: {
-        url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
-        scaledSize: new google.maps.Size(35, 35)
+    // Close dropdown if clicked outside
+    window.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdownContent.style.display = 'none';
+        dropbtn.classList.remove('active');
       }
     });
-    markers.push(marker);
 
-    marker.addListener('click', () => {
-      infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
-      infowindow.open(map, marker);
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      schools.forEach(school => {
+        const name = school.getAttribute('data-name').toLowerCase();
+        if (name.includes(filter)) {
+          school.style.display = '';
+        } else {
+          school.style.display = 'none';
+        }
+      });
     });
-  }
+  </script>
 
-  document.getElementById('toggleSchoolsBtn').addEventListener('click', () => {
-    if (markers.length === 0) return;
-    schoolsVisible = !schoolsVisible;
-    markers.forEach(m => m.setVisible(schoolsVisible));
-    document.getElementById('toggleSchoolsBtn').textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
-  });
-  */
-</script>
-
-<!-- No Google Maps API JS script included since iframe is used -->
 </body>
 </html>
