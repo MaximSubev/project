@@ -13,66 +13,69 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 960px;
-      margin: 0 auto;
-      background-color: #f4f6f8;
-      padding: 0 20px 60px;
+      background-color: #f0f2f5;
       color: #2c3e50;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     header {
-      background: linear-gradient(270deg, red, green, blue);
+      background: linear-gradient(270deg, #ff003c, #28a745, #007bff);
       background-size: 600% 600%;
-      animation: rgbShift 15s ease infinite;
+      animation: rgbShift 12s ease infinite;
       color: white;
-      padding: 40px 20px;
+      padding: 50px 30px;
       text-align: center;
-      font-size: 2.75rem;
+      font-size: 2.8rem;
       font-weight: bold;
-      text-shadow: 0 0 10px rgba(0,0,0,0.6);
-      margin: 30px 0 40px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
       border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      margin-bottom: 40px;
     }
 
     .dropdown {
       position: relative;
       display: inline-block;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .dropbtn {
-      background-color: #34495e;
-      color: white;
+      background-color: #1e3a5f;
+      color: #fff;
       padding: 14px 24px;
-      font-size: 16px;
+      font-size: 17px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
 
     .dropbtn:hover,
     .dropbtn.active {
-      background-color: #16a085;
-      transform: scale(1.02);
+      background-color: #17a2b8;
+      transform: translateY(-2px);
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #ffffff;
-      min-width: 240px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      background-color: #fff;
       border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       margin-top: 8px;
-      z-index: 1000;
       overflow: hidden;
+      min-width: 230px;
+      z-index: 1000;
     }
 
     .dropdown-content a {
@@ -80,45 +83,46 @@
       padding: 14px 20px;
       text-decoration: none;
       display: block;
-      border-bottom: 1px solid #f0f0f0;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     .dropdown-content a:hover {
-      background-color: #16a085;
-      color: white;
+      background-color: #17a2b8;
+      color: #fff;
     }
 
     #map-container {
-      margin-top: 40px;
       text-align: center;
+      margin-top: 40px;
     }
 
     #map-container h3 {
+      font-size: 1.6rem;
       margin-bottom: 20px;
-      font-size: 1.4rem;
     }
 
     #map {
       width: 100%;
-      max-width: 800px;
       height: 600px;
+      max-width: 900px;
       border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
       border: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .dropbtn {
         width: 100%;
       }
 
       .dropdown-content {
         min-width: 100%;
+      }
+
+      header {
+        font-size: 2rem;
+        padding: 30px 20px;
       }
 
       #map {
@@ -160,9 +164,9 @@
     const dropdownContent = document.getElementById('dropdown-content');
 
     dropbtn.addEventListener('click', () => {
-      const visible = dropdownContent.style.display === 'block';
-      dropdownContent.style.display = visible ? 'none' : 'block';
-      dropbtn.classList.toggle('active', !visible);
+      const isVisible = dropdownContent.style.display === 'block';
+      dropdownContent.style.display = isVisible ? 'none' : 'block';
+      dropbtn.classList.toggle('active', !isVisible);
     });
 
     window.addEventListener('click', (e) => {
