@@ -1,9 +1,87 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <title>Гимназии в Добрич</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Основни училища в град Добрич - 2021/2022</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #e7f0fe;
+        margin: 30px;
+        color: #1a1a1a;
+    }
+    h1 {
+        color: #003366;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .school {
+        display: flex;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 20px;
+        margin-bottom: 30px;
+        gap: 25px;
+        align-items: flex-start;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .school:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .school img {
+        max-width: 260px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        flex-shrink: 0;
+    }
+    .school-info {
+        max-width: 600px;
+    }
+    .school-info h2 {
+        margin-top: 0;
+        color: #00509e;
+        margin-bottom: 12px;
+    }
+    .school-info p {
+        margin: 6px 0;
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+    .school-info p strong {
+        color: #003366;
+    }
+    footer {
+        text-align: center;
+        font-style: italic;
+        color: #00509e;
+        margin-top: 50px;
+        font-size: 0.9rem;
+    }
+    a.return-home {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #003366;
+        color: #fff;
+        padding: 12px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+    }
+    a.return-home:hover {
+        background-color: #001f4d;
+        cursor: pointer;
+    }
+
+    /* Styles from the second provided code (for dropdown and search) */
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -25,12 +103,14 @@
       border-radius: 12px;
     }
 
+    /* Adjusted body to match the layout of the second code for overall container */
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      background-color: #f4f6f8;
-      padding: 0 20px 40px 20px;
+      max-width: 800px; /* Kept from the second code for content width */
+      margin: auto; /* Kept from the second code for centering */
+      background-color: #f4f6f8; /* Kept from the second code for background */
+      padding: 0 20px 40px 20px; /* Kept from the second code for padding */
+      color: #1a1a1a; /* Re-added from first code for text color */
     }
 
     .dropdown {
@@ -97,17 +177,29 @@
       box-sizing: border-box;
     }
 
+    /* Modified .school to combine styles, ensuring it's still a flex container */
     .school {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
+        display: flex; /* Kept from first code for school item layout */
+        background: white; /* Kept from second code for background */
+        border: 1px solid #ddd; /* Kept from second code for border */
+        padding: 15px; /* Kept from second code for padding */
+        border-radius: 8px; /* Kept from second code for border-radius */
+        margin-bottom: 15px; /* Kept from second code for margin */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Re-added from first code for consistency */
+        gap: 25px; /* Re-added from first code for spacing between image and info */
+        align-items: flex-start; /* Re-added from first code for alignment */
+        transition: transform 0.25s ease, box-shadow 0.25s ease; /* Re-added from first code for hover effect */
+    }
+
+    .school:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .school h2 {
       margin-top: 0;
-      color: #2c3e50;
+      color: #00509e; /* Re-added from first code for h2 color */
+      margin-bottom: 12px; /* Re-added from first code for h2 margin */
     }
 
     @media (max-width: 600px) {
@@ -118,7 +210,7 @@
         min-width: 100%;
       }
     }
-  </style>
+</style>
 </head>
 <body>
 
@@ -138,17 +230,91 @@
 
   <input type="text" id="search" placeholder="Търси по име..." />
 
+  <h1>Основни училища в град Добрич (2021/2022)</h1>
+
   <div id="schools">
-    <div class="school" data-name="Езикова гимназия 'Гео Милев'">
-      <h2>ЕГ "Гео Милев"</h2>
-      <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
+    <div class="school" data-name="ОУ „Хан Аспарух“">
+        <img src="uploads/Obrazovanie/snimki/asparuh.jpg" alt="ОУ Хан Аспарух" />
+        <div class="school-info">
+            <h2>ОУ „Хан Аспарух“</h2>
+            <p><strong>Адрес:</strong> ж.к. „Добротица“ № 11</p>
+            <p><strong>Директор:</strong> Невяна Люцканова</p>
+            <p><strong>Телефон:</strong> 603 022</p>
+            <p><strong>Имейл:</strong> <a href="mailto:hanasparuh.dobrich@abv.bg">hanasparuh.dobrich@abv.bg</a></p>
+            <p><strong>Брой паралелки:</strong> 19</p>
+            <p><strong>Брой ученици:</strong> 447</p>
+        </div>
     </div>
 
-    <div class="school" data-name="ПМГ 'Д-р Петър Берон'">
-      <h2>ПМГ "Д-р Петър Берон"</h2>
-      <p>Природо-математическа гимназия, ул. „Ген. Георги Попов“ 5</p>
+    <div class="school" data-name="ОУ „Йордан Йовков“">
+        <img src="uploads/Obrazovanie/snimki/jovkov.jpg" alt="ОУ Йордан Йовков" />
+        <div class="school-info">
+            <h2>ОУ „Йордан Йовков“</h2>
+            <p><strong>Адрес:</strong> ул. „Генерал Г. Попов“ № 52</p>
+            <p><strong>Директор:</strong> Живко Жечев</p>
+            <p><strong>Телефон:</strong> 662 752</p>
+            <p><strong>Имейл:</strong> <a href="mailto:school_jovkov@abv.bg">school_jovkov@abv.bg</a></p>
+            <p><strong>Брой паралелки:</strong> 11</p>
+            <p><strong>Брой ученици:</strong> 185</p>
+        </div>
+    </div>
+
+    <div class="school" data-name="ОУ „Никола Вапцаров“">
+        <img src="uploads/Obrazovanie/snimki/vapcarov.jpg" alt="ОУ Никола Вапцаров" />
+        <div class="school-info">
+            <h2>ОУ „Никола Вапцаров“</h2>
+            <p><strong>Адрес:</strong> ул. „Отец Паисий“ № 37</p>
+            <p><strong>Директор:</strong> Тошко Керанов</p>
+            <p><strong>Телефон:</strong> 602 414</p>
+            <p><strong>Имейл:</strong> <a href="mailto:ouvapcarov@abv.bg">ouvapcarov@abv.bg</a></p>
+            <p><strong>Брой паралелки:</strong> 8</p>
+            <p><strong>Брой ученици:</strong> 138</p>
+        </div>
+    </div>
+
+    <div class="school" data-name="ОУ „Панайот Волов“">
+        <img src="uploads/Obrazovanie/snimki/volov.jpg" alt="ОУ Панайот Волов" />
+        <div class="school-info">
+            <h2>ОУ „Панайот Волов“</h2>
+            <p><strong>Адрес:</strong> ул. „Христо Ботев“ № 48</p>
+            <p><strong>Директор:</strong> Ивелин Мирчев</p>
+            <p><strong>Телефон:</strong> 662 729, 661 560, 667 163</p>
+            <p><strong>Имейл:</strong> <a href="mailto:ou_volov@abv.bg">ou_volov@abv.bg</a></p>
+            <p><strong>Брой паралелки:</strong> 10</p>
+            <p><strong>Брой ученици:</strong> 206</p>
+        </div>
+    </div>
+
+    <div class="school" data-name="ОУ „Христо Смирненски“">
+        <img src="uploads/Obrazovanie/snimki/smirnenski.jpg" alt="ОУ Христо Смирненски" />
+        <div class="school-info">
+            <h2>ОУ „Христо Смирненски“</h2>
+            <p><strong>Адрес:</strong> ул. „Отец Паисий“ № 17</p>
+            <p><strong>Директор:</strong> Иванка Димитрова</p>
+            <p><strong>Телефон:</strong> 602 823, 602 798</p>
+            <p><strong>Имейл:</strong> <a href="mailto:dimova@bergon.net">dimova@bergon.net</a></p>
+            <p><strong>Брой паралелки:</strong> 11</p>
+            <p><strong>Брой ученици:</strong> 198</p>
+        </div>
+    </div>
+
+    <div class="school" data-name="ОУ „Христо Ботев“">
+        <img src="uploads/Obrazovanie/snimki/botev.jpg" alt="ОУ Христо Ботев" />
+        <div class="school-info">
+            <h2>ОУ „Христо Ботев“</h2>
+            <p><strong>Адрес:</strong> ул. „Цар Самуил“ № 14</p>
+            <p><strong>Директор:</strong> Красимира Георгиева</p>
+            <p><strong>Телефон:</strong> 602 176, 602 410</p>
+            <p><strong>Имейл:</strong> <a href="mailto:hristobotev@abv.bg">hristobotev@abv.bg</a></p>
+            <p><strong>Брой паралелки:</strong> 24</p>
+            <p><strong>Брой ученици:</strong> 506</p>
+        </div>
     </div>
   </div>
+
+  <footer>
+    <p>© Община Добрич, 2021/2022</p>
+  </footer>
 
   <script>
     const dropdown = document.getElementById('dropdown');
