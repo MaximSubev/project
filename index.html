@@ -87,17 +87,6 @@
       color: white;
     }
 
-    #search {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
-      /* You can remove this input if you don't want search on homepage */
-    }
-
     #map-container {
       margin-top: 30px;
       text-align: center;
@@ -138,9 +127,6 @@
     </div>
   </div>
 
-  <!-- Search input can stay or be removed if you want -->
-  <input type="text" id="search" placeholder="Търси по име..." />
-
   <div id="map-container">
     <h3>Карта на училищата в Добрич</h3>
     <iframe
@@ -169,13 +155,6 @@
         dropdownContent.style.display = 'none';
         dropbtn.classList.remove('active');
       }
-    });
-
-    // You can remove this search script if no search input is present on homepage
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('input', () => {
-      // If you want search to do something on homepage, add code here
-      // Or simply leave empty to do nothing
     });
   </script>
 
