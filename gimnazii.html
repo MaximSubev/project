@@ -2,7 +2,7 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
-  <title>Училища в Добрич</title>
+  <title>Гимназии в Добрич</title>
   <style>
     @keyframes rgbShift {
       0% { background-position: 0% 50%; }
@@ -110,14 +110,6 @@
       color: #2c3e50;
     }
 
-    .school-image {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: block;
-    }
-
     #map-container {
       margin-top: 30px;
       text-align: center;
@@ -161,68 +153,22 @@
   <input type="text" id="search" placeholder="Търси по име..." />
 
   <div id="schools">
-    <div class="school" data-name="ОУ 'Хан Аспарух'">
-      <h2>ОУ "Хан Аспарух"</h2>
-      <p>Начално училище в жк. Добротица, ул. „Ж.К. Добротица“ 12</p>
-    </div>
     <div class="school" data-name="Езикова гимназия 'Гео Милев'">
       <h2>ЕГ "Гео Милев"</h2>
       <p>Средно училище с езиково направление, бул. „Русия“ 2</p>
     </div>
-    <div class="school" data-name="СОУ 'Димитър Талев'">
-      <h2>СОУ "Димитър Талев"</h2>
-      <p>Средно общообразователно, ул. Ген. Георги Попов</p>
-    </div>
-    <div class="school" data-name="ОУ 'Н. Й. Вапцаров'">
-      <h2>ОУ "Н. Й. Вапцаров"</h2>
-      <p>Начално училище, близо до Централна поща</p>
-    </div>
 
-    <!-- Private Schools with images -->
-    <h2>Частни училища</h2>
-
-    <div class="school" data-name="ЧПГТП 'Райко Цончев'">
-      <img src="raiko.jpg" alt="ЧПГТП 'Райко Цончев'" class="school-image" />
-      <h2>ЧПГТП "Райко Цончев"</h2>
-      <p>Частна Профилирана Гимназия по Туризъм и Предприемачество "Райко Цончев", прием след 7-ми клас в профили: Туризъм, Предприемачество и бизнес, Информационни технологии и Английски език.</p>
-      <p>През 2021/22 г. има 65 ученика в 11 паралелки.</p>
-      <p><strong>Директор:</strong> д-р Маргарита Христова</p>
-      <p><strong>Адрес:</strong> ОФИС № 14, ул.България, №3 Добрич 9300</p>
-      <p><strong>Тел:</strong> 058 655 645</p>
-      <p><strong>Email:</strong> <a href="mailto:pgtp_raykoconchev@abv.bg">pgtp_raykoconchev@abv.bg</a></p>
-      <p><a href="http://www.egtp.eu" target="_blank" rel="noopener noreferrer">www.egtp.eu</a></p>
+    <div class="school" data-name="ПМГ 'Д-р Петър Берон'">
+      <h2>ПМГ "Д-р Петър Берон"</h2>
+      <p>Природо-математическа гимназия, ул. „Ген. Георги Попов“ 5</p>
     </div>
-
-    <div class="school" data-name="ЧСУ 'Леонардо да Винчи'">
-      <img src="leonardo.jpg" alt="ЧСУ 'Леонардо да Винчи'" class="school-image" />
-      <h2>ЧСУ "Леонардо да Винчи"</h2>
-      <p>Частна профилирана гимназия, прием след 4-ти клас с усилено изучаване на английски език.</p>
-      <p>Прием след 7-ми клас в профили: Чуждоезиков и Технологичен - стопански мениджмънт с интензивно обучение по английски език.</p>
-      <p>В гимназията се обучават 70 деца в 13 паралелки.</p>
-      <p><strong>Директор:</strong> Нели Николаева</p>
-      <p><strong>Адрес:</strong> ЖК"Русия" 2 Е</p>
-      <p><strong>Тел:</strong> 058 602 418, 058 623 548</p>
-      <p><strong>Email:</strong> <a href="mailto:leonardoschool@abv.bg">leonardoschool@abv.bg</a></p>
-      <p><a href="http://www.leonardo-dobrich.com" target="_blank" rel="noopener noreferrer">www.leonardo-dobrich.com</a></p>
-    </div>
-
-    <div class="school" data-name="ЧОУ 'Мария Монтесори'">
-      <img src="monstesori.jpg" alt="ЧОУ 'Мария Монтесори'" class="school-image" />
-      <h2>ЧОУ "Мария Монтесори"</h2>
-      <p>Първото частно основно училище в Добрич, което използва методиката на Мария Монтесори.</p>
-      <p>Обучава ученици от 1 до 7 клас, комбинирайки традиционни и съвременни методи на образование.</p>
-      <p><strong>Адрес:</strong> ул. "България" № 3, сграда на Международен колеж</p>
-      <p><strong>Тел:</strong> 058 655 635</p>
-      <p><strong>Email:</strong> <a href="mailto:choumontessori@gmail.com">choumontessori@gmail.com</a></p>
-    </div>
-
   </div>
 
   <div id="map-container">
-    <h3>Карта на училищата в Добрич</h3>
+    <h3>Карта на гимназиите в Добрич</h3>
     <iframe
       id="map"
-      src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7765.380969576498!2d27.8264169358564!3d43.56798099144095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%D1%83%D1%87%D0%B8%D0%BB%D0%B8%D1%89%D0%B0%20%D0%B2%20%D0%B4%D0%BE%D0%B1%D1%80%D0%B8%D1%87!5e0!3m2!1sbg!2sbg!4v1686579452629!5m2!1sbg!2sbg"
+      src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7765.380969576498!2d27.8264169358564!3d43.56798099144095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1s%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8+%D0%B4%D0%BE%D0%B1%D1%80%D0%B8%D1%87!5e0!3m2!1sbg!2sbg!4v1686579452629!5m2!1sbg!2sbg"
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade">
