@@ -1,173 +1,21 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Училища в Добрич - Интерактивна Карта</title>
-<style>
-  /* Reset and basics */
-  * {
-    box-sizing: border-box;
-  }
-  body, html {
-    margin: 0; padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f7fafc;
-    color: #2d3748;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  /* Header with smooth gradient animation */
-  header {
-    padding: 40px 20px 20px;
-    background: linear-gradient(270deg, #ff416c, #ff4b2b, #1f4037, #99f2c8);
-    background-size: 800% 800%;
-    animation: gradientShift 20s ease infinite;
-    color: #fff;
-    text-align: center;
-    font-weight: 900;
-    font-size: 3rem;
-    text-shadow: 0 0 15px rgba(0,0,0,0.5);
-    border-radius: 0 0 24px 24px;
-    user-select: none;
-  }
-  header small {
-    display: block;
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 1.25rem;
-    opacity: 0.85;
-    text-shadow: none;
-  }
-  @keyframes gradientShift {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-
-  /* Main content layout */
-  main {
-    flex: 1;
-    display: flex;
-    max-width: 1200px;
-    margin: 30px auto 40px;
-    width: 90%;
-    gap: 25px;
-  }
-
-  /* Sidebar styling */
-  aside {
-    width: 320px;
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-    padding: 25px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  aside h2 {
-    margin: 0 0 15px 0;
-    color: #2b6cb0;
-    font-weight: 700;
-    border-bottom: 3px solid #2b6cb0;
-    padding-bottom: 8px;
-  }
-  aside p {
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-  aside ul {
-    max-height: 150px;
-    overflow-y: auto;
-    border: 1px solid #e2e8f0;
-    background: #f7fafc;
-    border-radius: 12px;
-    padding: 12px 16px;
-    margin: 0;
-    list-style-type: disc;
-    color: #4a5568;
-  }
-  aside ul li {
-    margin-bottom: 8px;
-  }
-
-  /* Dropdown and button styling */
-  select, button {
-    font-size: 1rem;
-    padding: 12px 15px;
-    border-radius: 12px;
-    border: 2px solid #2b6cb0;
-    background: #e0e7ff;
-    color: #2c5282;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    font-weight: 600;
-  }
-  select:focus, button:focus {
-    outline: none;
-    border-color: #2c5282;
-    background: #c3dafe;
-  }
-  select:hover, button:hover {
-    background-color: #2b6cb0;
-    border-color: #2c5282;
-    color: white;
-  }
-
-  /* Map container */
-  #map {
-    flex: 1;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    min-height: 650px;
-    border: 2px solid #cbd5e0;
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 18px 10px;
-    font-size: 0.95rem;
-    color: #718096;
-    background-color: #edf2f7;
-    border-top: 1px solid #cbd5e0;
-    user-select: none;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 900px) {
-    main {
-      flex-direction: column;
-      margin: 20px auto 30px;
-    }
-    aside {
-      width: 100%;
-      padding: 20px 15px;
-      border-radius: 16px;
-    }
-    #map {
-      min-height: 400px;
-      margin-top: 20px;
-      border-radius: 16px;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Училища в Добрич - Начална страница</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header>
-  Проект от Максим и Димитър
-  <small>Интерактивна карта с всички училища в Добрич</small>
+  <h1>Проект от Максим и Димитър</h1>
+  <p>Интерактивна карта с всички училища в Добрич</p>
 </header>
 
 <main>
   <aside>
     <h2>Навигация към страници</h2>
-    <p>Изберете категория училища за пренасочване:</p>
     <select id="schoolSelect" aria-label="Избор на категория училища">
       <option value="" disabled selected>-- Изберете категория --</option>
       <option value="private.html">Частни училища</option>
@@ -175,18 +23,10 @@
       <option value="osnovnischools.html">Основни училища</option>
       <option value="publicschools.html">Обществени училища</option>
     </select>
-
-    <h2>Информация</h2>
-    <p>Тази карта показва всички училища в радиус 5 км от центъра на Добрич.</p>
-    <ul>
-      <li>Кликнете върху маркер, за да видите името на училището.</li>
-      <li>Използвайте бутона по-долу за скриване/показване на училищата.</li>
-    </ul>
-
     <button id="toggleSchoolsBtn" aria-pressed="true">Скрий училищата</button>
   </aside>
 
-  <div id="map" role="application" aria-label="Интерактивна карта на училища в Добрич"></div>
+  <div id="map" style="width: 100%; height: 600px; border-radius: 12px;"></div>
 </main>
 
 <footer>
@@ -194,6 +34,14 @@
 </footer>
 
 <script>
+  // Redirect from dropdown
+  document.getElementById('schoolSelect').addEventListener('change', function () {
+    const page = this.value;
+    if (page) {
+      window.location.href = page;
+    }
+  });
+
   let map;
   let service;
   let infowindow;
@@ -202,20 +50,12 @@
 
   function initMap() {
     const dobich = new google.maps.LatLng(43.5725, 27.8279);
-
-    map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: dobich,
       zoom: 13,
       styles: [
-        {
-          featureType: 'poi.school',
-          stylers: [{ color: '#ff6f61' }, { visibility: 'on' }]
-        },
-        {
-          featureType: 'poi',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }]
-        }
+        { featureType: 'poi.school', stylers: [{ color: '#f39c12' }, { visibility: 'on' }] },
+        { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] }
       ]
     });
 
@@ -249,49 +89,32 @@
 
   function createMarker(place) {
     if (!place.geometry || !place.geometry.location) return;
-
     const marker = new google.maps.Marker({
       map,
       position: place.geometry.location,
       title: place.name,
       icon: {
         url: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
-        scaledSize: new google.maps.Size(38, 38)
+        scaledSize: new google.maps.Size(35, 35)
       }
     });
-
     markers.push(marker);
 
-    marker.addListener("click", () => {
+    marker.addListener('click', () => {
       infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
       infowindow.open(map, marker);
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const schoolSelect = document.getElementById('schoolSelect');
-    const toggleBtn = document.getElementById('toggleSchoolsBtn');
-
-    // Dropdown navigation
-    schoolSelect.addEventListener('change', () => {
-      const page = schoolSelect.value;
-      if (page) {
-        window.location.href = page;
-      }
-    });
-
-    // Toggle schools markers visibility
-    toggleBtn.addEventListener('click', () => {
-      if (markers.length === 0) return;
-      schoolsVisible = !schoolsVisible;
-      markers.forEach(m => m.setVisible(schoolsVisible));
-      toggleBtn.textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
-      toggleBtn.setAttribute('aria-pressed', schoolsVisible);
-    });
+  document.getElementById('toggleSchoolsBtn').addEventListener('click', () => {
+    if (markers.length === 0) return;
+    schoolsVisible = !schoolsVisible;
+    markers.forEach(m => m.setVisible(schoolsVisible));
+    document.getElementById('toggleSchoolsBtn').textContent = schoolsVisible ? 'Скрий училищата' : 'Покажи училищата';
   });
 </script>
 
-<!-- Google Maps JS API (replace YOUR_API_KEY with your actual key) -->
+<!-- Replace YOUR_API_KEY with your real Google Maps API key -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
 
 </body>
