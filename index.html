@@ -19,74 +19,75 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+      background: linear-gradient(to right top, #d4fc79, #96e6a1);
       color: #333;
       padding: 20px;
       max-width: 1200px;
       margin: auto;
+      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(270deg, #ff416c, #ff4b2b, #28a745, #007bff);
+      background: linear-gradient(270deg, #ff6a00, #ee0979, #00c9ff);
       background-size: 600% 600%;
       animation: rgbShift 12s ease infinite;
       color: white;
       padding: 40px 20px;
       text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
+      font-size: 2.7rem;
+      font-weight: 700;
       text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-      border-radius: 16px;
-      margin-bottom: 40px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 18px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     .dropdown {
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: center;
     }
 
     .dropbtn {
-      background-color: #006064;
-      color: white;
-      padding: 14px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #004d40;
+      padding: 14px 24px;
+      font-size: 18px;
+      border: 2px solid #004d40;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
       cursor: pointer;
-      width: 100%;
-      max-width: 300px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .dropbtn:hover {
-      background-color: #00838f;
+      background: rgba(0, 77, 64, 0.8);
+      color: white;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 300px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 250px;
       z-index: 1000;
-      margin-top: 5px;
+      margin-top: 10px;
     }
 
     .dropdown-content a {
       display: block;
-      padding: 12px 16px;
-      color: #333;
+      padding: 14px 20px;
+      color: #004d40;
       text-decoration: none;
-      border-bottom: 1px solid #eee;
-      transition: background-color 0.2s;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
     }
 
     .dropdown-content a:hover {
-      background-color: #006064;
+      background-color: #004d40;
       color: white;
     }
 
@@ -97,40 +98,53 @@
 
     #map-container h3 {
       margin-bottom: 20px;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      color: #00695c;
     }
 
     #map {
       width: 100%;
       max-width: 900px;
       height: 500px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       border: none;
     }
 
     .dobrich-info {
       margin-top: 60px;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      background: white;
+      padding: 40px 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      line-height: 1.7;
     }
 
     .dobrich-info h2 {
       text-align: center;
-      color: #006064;
-      margin-bottom: 15px;
+      color: #004d40;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     .dobrich-info p {
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 1.05rem;
       text-align: justify;
+      color: #444;
     }
 
-    @media (max-width: 600px) {
-      .dropbtn,
+    @media (max-width: 768px) {
+      header {
+        font-size: 2rem;
+        padding: 30px 10px;
+      }
+
+      .dropbtn {
+        width: 100%;
+        max-width: none;
+        font-size: 1rem;
+      }
+
       .dropdown-content {
         width: 100%;
       }
@@ -139,9 +153,8 @@
         height: 400px;
       }
 
-      header {
-        font-size: 2rem;
-        padding: 30px 10px;
+      .dobrich-info {
+        padding: 30px 20px;
       }
     }
   </style>
@@ -174,9 +187,9 @@
   </div>
 
   <div class="dobrich-info">
-    <h2>За град Добрич</h2>
+    <h2>Добре дошли в Добрич</h2>
     <p>
-      Добрич е осмият по големина град в България и административен център на област Добрич. Градът е известен със своите зелени паркове, културни събития и модерна образователна инфраструктура. Разположен е в сърцето на Добруджа — житницата на България. Добрич предлага спокойна и развита среда за живот, учене и професионално развитие.
+      Добрич е красив и спокоен град в Североизточна България, често наричан "Сърцето на Добруджа". Със своята богата културна история, зелени паркове, музеи и училища, градът предлага чудесна среда за образование и живот. В Добрич има разнообразие от учебни заведения, които подготвят учениците за успешна реализация в България и чужбина.
     </p>
   </div>
 
